@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextDisplayName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Display Name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editTextEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/editTextCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/editTextDiv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Division"
+                android:inputType="text" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Role" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/editTextRollNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Roll Number"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/signupbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign In" />
+
+            <TextView
+                android:id="@+id/goToLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Go Back To Login Page?" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    android:padding="16dp"
+    tools:context=".ApplyForForm">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="FORM FILLING"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note: Please fill all the fields." />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reason For Being Late"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/reason_for_being_late"
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:hint="Write Reason"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Where Do You Live"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your Residential"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How Many Times Have You been Late"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:id="@+id/times_late"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of times"/>
+
+    <Button
+        android:id="@+id/submitbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/backtomainbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go Back To Main Page" />
+
+
+</LinearLayout>

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "880502508248",
+    "firebase_url": "https://summer-project-bc9b0-default-rtdb.firebaseio.com",
+    "project_id": "summer-project-bc9b0",
+    "storage_bucket": "summer-project-bc9b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880502508248:android:6ac39776761e98026565ad",
+        "android_client_info": {
+          "package_name": "com.example.summer_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWVhh7sLLRnsY3yh946eRNzQJD7kItXvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880502508248:android:3ca2dbae93f488356565ad",
+        "android_client_info": {
+          "package_name": "com.somaiya.summer_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWVhh7sLLRnsY3yh946eRNzQJD7kItXvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
