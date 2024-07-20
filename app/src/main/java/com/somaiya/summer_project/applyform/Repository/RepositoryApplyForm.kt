@@ -20,5 +20,13 @@ class RepositoryApplyForm {
                 .add(form)
         }
 
+        user?.let {
+            val userid = it.uid
+
+            firestore
+                .collection("REASONS")
+                .add(form)
+        }
+
     }
 }

@@ -8,6 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.auth
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.somaiya.summer_project.applyform.Repository.RepositoryApplyForm
 import com.somaiya.summer_project.applyform.Repository.ViewModelApplyForm
@@ -23,6 +27,7 @@ class ApplyForForm : AppCompatActivity() {
 
     lateinit var submit_btn: Button
     lateinit var backtomainbtn: Button
+
 
     private val applyFormRepository = RepositoryApplyForm()
     private val ViewModelApplyForm: ViewModelApplyForm by viewModels {
@@ -42,15 +47,17 @@ class ApplyForForm : AppCompatActivity() {
         submit_btn = findViewById(R.id.submitbtn)
         backtomainbtn = findViewById(R.id.backtomainbtn)
 
+        val user = Firebase.auth.currentUser
 
         submit_btn.setOnClickListener {
             lifecycleScope.launch {
                 val reason = reason_for_being_late.text.toString()
                 val location = location.text.toString()
                 val times_late = times_late.text.toString()
+                val email = user?.email.toString()
 
                 if (reason.isNotEmpty() || location.isNotEmpty() || times_late.isNotEmpty()) {
-                    val form = ApplyFormData(reason, location, times_late)
+                    val form = ApplyFormData(reason, location, times_late,email)
                     submitform(form)
                 }
             }

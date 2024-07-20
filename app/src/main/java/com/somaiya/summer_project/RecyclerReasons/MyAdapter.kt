@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.somaiya.summer_project.R
+import com.somaiya.summer_project.applyform.Model.ApplyFormData
 
-class MyAdapter(private val reasons: ArrayList<Reasons>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(private val applyform: ArrayList<ApplyFormData>): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val email = itemView.findViewById<TextView>(R.id.emailrc)
         val nooftimeslate = itemView.findViewById<TextView>(R.id.nooftimeslaterc)
         val reason = itemView.findViewById<TextView>(R.id.reasonrc)
+        val location = itemView.findViewById<TextView>(R.id.locationrc)
 
     }
 
@@ -22,15 +24,15 @@ class MyAdapter(private val reasons: ArrayList<Reasons>): RecyclerView.Adapter<M
     }
 
     override fun getItemCount(): Int {
-       return reasons.size
+       return applyform.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentreason = reasons[position]
-        holder.email.text = currentreason.userEmail
-        holder.nooftimeslate.text = currentreason.timesLate
-        holder.reason.text = currentreason.reason
-
+        val applyformcurrent = applyform[position]
+        holder.email.text = applyformcurrent.userEmail
+        holder.nooftimeslate.text = applyformcurrent.timesLate
+        holder.reason.text = applyformcurrent.reasonForBeingLate
+        holder.location.text = applyformcurrent.location
     }
 
 }

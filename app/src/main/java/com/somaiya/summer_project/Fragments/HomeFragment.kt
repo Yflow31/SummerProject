@@ -15,6 +15,7 @@ import com.somaiya.summer_project.RecyclerReasons.MyAdapter
 import com.somaiya.summer_project.RecyclerReasons.Reasons
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.somaiya.summer_project.applyform.Model.ApplyFormData
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +31,7 @@ class HomeFragment : Fragment() {
 
     lateinit var recyclerviewreason: RecyclerView
 
-    lateinit var reasonList: ArrayList<Reasons>
+    lateinit var applyform: ArrayList<ApplyFormData>
 
     lateinit var reasonAdapter: MyAdapter
 
@@ -48,8 +49,8 @@ class HomeFragment : Fragment() {
 
         recyclerviewreason = view.findViewById(R.id.recyclerviewreason)
         recyclerviewreason.layoutManager = LinearLayoutManager(context)
-        reasonList = arrayListOf()
-        reasonAdapter = MyAdapter(reasonList)
+        applyform = arrayListOf()
+        reasonAdapter = MyAdapter(applyform)
         recyclerviewreason.adapter = reasonAdapter
 
 
@@ -59,19 +60,15 @@ class HomeFragment : Fragment() {
         val currentUser = auth.currentUser
 
         if (currentUser != null) {
+
             db.collection("users")
                 .document(currentUser.uid)
                 .collection("reasons")
-                .get().addOnCompleteListener {
-                    if (!it.isSuccessful) {
-                        return@addOnCompleteListener
-                    }
-                }
+                .get()
                 .addOnSuccessListener { documents ->
-                    Log.d("Firebase test", "Success:{$documents} ")
                     for (document in documents) {
-                        val reason = document.toObject(Reasons::class.java)
-                        reasonList.add(reason)
+                        val formData = document.toObject(ApplyFormData::class.java)
+                        applyform.add(formData)
                     }
                     reasonAdapter.notifyDataSetChanged()
                 }
