@@ -13,9 +13,6 @@ class RepositorySignUp {
                     val userId = auth.currentUser!!.uid
                     val userRef = firestore.collection("USERS").document(userId)
 
-                    val role = dataSignUp.role
-
-                    val roleRef = userRef.collection("ROLE").document(role)
 
                     val data = hashMapOf(
                         "firstName" to dataSignUp.firstName,
@@ -25,10 +22,12 @@ class RepositorySignUp {
                         "email" to dataSignUp.email,
                         "course" to dataSignUp.course,
                         "div" to dataSignUp.div,
-                        "rollNo" to dataSignUp.rollNo
+                        "rollNo" to dataSignUp.rollNo,
+                        "role" to dataSignUp.role,
+                        "isactive" to true
                     )
 
-                    roleRef.set(data)
+                    userRef.set(data)
                 }
             }
     }

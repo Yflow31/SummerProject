@@ -50,7 +50,7 @@ class ProfileUpdate : AppCompatActivity() {
                 val email = "john.mckinley@examplepetstore.com"
                 val div = "B"
                 if (firstname.isNotEmpty() || lastname.isNotEmpty() || coursename.isNotEmpty() || rollno.isNotEmpty()) {
-                    val profile = ProfileData(firstname, lastname,email, coursename,div, rollno)
+                    val profile = ProfileData(firstname, lastname ,email, coursename, div, rollno)
                     updateprf(profile)
                 }
             }

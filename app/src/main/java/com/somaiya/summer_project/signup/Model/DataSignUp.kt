@@ -10,5 +10,6 @@ data class DataSignUp(
     val div: String,
     val role: String,
     val password: String,
-    val rollNo: String
+    val rollNo: String,
+    val isactive: String
 )

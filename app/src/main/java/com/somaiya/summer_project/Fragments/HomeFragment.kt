@@ -2,6 +2,7 @@ package com.somaiya.summer_project.Fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -61,8 +62,13 @@ class HomeFragment : Fragment() {
             db.collection("users")
                 .document(currentUser.uid)
                 .collection("reasons")
-                .get()
+                .get().addOnCompleteListener {
+                    if (!it.isSuccessful) {
+                        return@addOnCompleteListener
+                    }
+                }
                 .addOnSuccessListener { documents ->
+                    Log.d("Firebase test", "Success:{$documents} ")
                     for (document in documents) {
                         val reason = document.toObject(Reasons::class.java)
                         reasonList.add(reason)
@@ -71,14 +77,11 @@ class HomeFragment : Fragment() {
                 }
         }
 
-
-
         val fab = view.findViewById<View>(R.id.fab)
         fab.setOnClickListener {
             val Intent = Intent(activity, ApplyForForm::class.java)
             startActivity(Intent)
         }
-
         return view
     }
 

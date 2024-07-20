@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                                     // Login successful
                                     val intent = Intent(this@MainActivity, MainMenu::class.java)
                                     startActivity(intent)
+                                    finish()
                                 }
                             }
                         }
@@ -75,6 +76,7 @@ class MainActivity : AppCompatActivity() {
         signinbtn.setOnClickListener {
             val Intent = Intent(this@MainActivity, SignUp::class.java)
             startActivity(Intent)
+            finish()
         }
     }
 }

@@ -21,6 +21,7 @@ class SignUp : AppCompatActivity() {
         ViewModelFactorySignUp(repositorySignUp)
     }
 
+    private lateinit var editTextRole: EditText
     private lateinit var editTextFirstName: EditText
     private lateinit var editTextLastName: EditText
     private lateinit var editTextDisplayName: EditText
@@ -32,6 +33,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var editTextRollNo: EditText
     private lateinit var signupbtn: Button
     private lateinit var goToLogin: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +49,7 @@ class SignUp : AppCompatActivity() {
         editTextDiv = findViewById(R.id.editTextDiv)
         editTextPassword = findViewById(R.id.editTextPassword)
         editTextRollNo = findViewById(R.id.editTextRollNo)
+        editTextRole = findViewById(R.id.editTextRole)
 
         // Initialize Button and TextView
         signupbtn = findViewById(R.id.signupbtn)
@@ -61,7 +64,7 @@ class SignUp : AppCompatActivity() {
                 val email = editTextEmailAddress.text.toString()
                 val course = editTextCourse.text.toString()
                 val div = editTextDiv.text.toString()
-                val role = "STUDENT"
+                val role = editTextRole.text.toString()
                 val password = editTextPassword.text.toString()
                 val rollNo = editTextRollNo.text.toString()
 
@@ -71,7 +74,7 @@ class SignUp : AppCompatActivity() {
 
                     val example = DataSignUp(
                         firstName, lastName, displayName, phoneNumber, email,
-                        course, div, role, password, rollNo
+                        course, div, role, password, rollNo, "true"
                     )
                     signup(example)
                     val intent = Intent(this@SignUp, MainMenu::class.java)
@@ -83,6 +86,7 @@ class SignUp : AppCompatActivity() {
                     if (phoneNumber.isEmpty()) editTextPhoneNumber.error = "Please enter your phone number"
                     if (email.isEmpty()) editTextEmailAddress.error = "Please enter your email"
                     if (course.isEmpty()) editTextCourse.error = "Please enter your course"
+                    if (role.isEmpty()) editTextRole.error = "Please enter your role"
                     if (div.isEmpty()) editTextDiv.error = "Please enter your division"
                     if (password.isEmpty()) editTextPassword.error = "Please enter your password"
                     if (rollNo.isEmpty()) editTextRollNo.error = "Please enter your roll number"
@@ -93,6 +97,7 @@ class SignUp : AppCompatActivity() {
         goToLogin.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

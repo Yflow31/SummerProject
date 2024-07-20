@@ -25,6 +25,8 @@ class ProfileFragment : Fragment() {
                 startActivity(Intent)
             }
         }
+
+
         return view
     }
 

@@ -58,6 +58,24 @@ class MainMenu : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+                R.id.homeFragment -> {
+                    navController.navigate(R.id.homeFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
+                R.id.historyFragment -> {
+                    navController.navigate(R.id.historyFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
+                R.id.profileFragment -> {
+                    navController.navigate(R.id.profileFragment)
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    true
+                }
+
                 R.id.logOutFragment -> {
                     val auth = Firebase.auth
                     auth.signOut()
