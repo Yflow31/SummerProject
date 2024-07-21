@@ -34,7 +34,7 @@
             android:id="@+id/firstnametxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="First Name"
+            android:hint="Eg: Vijay"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -54,7 +54,27 @@
             android:id="@+id/lastnametxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Last Name"
+            android:hint="Eg: Sharma"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Display Name: "
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/displaynametxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Eg: Betanoobie"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -74,7 +94,7 @@
             android:id="@+id/coursenametxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Course Name"
+            android:hint="Eg: MCA"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -94,9 +114,72 @@
             android:id="@+id/rollnotxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Roll No"
+            android:hint="Eg: 44"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone no:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/phonenotxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Eg: 1234567890"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email: "
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/emailtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Eg: example@gmail.com"
             android:textSize="20sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Div: "
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/divtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Eg: MCA-A"
+            android:textSize="20sp" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/updatebtn"

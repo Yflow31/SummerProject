@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
+import com.somaiya.summer_project.signup.Model.DataSignUp
 
 class MainMenu : AppCompatActivity() {
 
@@ -24,6 +25,7 @@ class MainMenu : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,7 @@ class MainMenu : AppCompatActivity() {
         if (user == null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 
@@ -53,8 +56,10 @@ class MainMenu : AppCompatActivity() {
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.user_name)
         val userEmailTextView = headerView.findViewById<TextView>(R.id.user_email)
-        userNameTextView.setText(user?.displayName.toString())
+        userNameTextView.setText(user?.displayName)
+        Log.d("displayname", "onCreate: {$user.displayName.toString()}")
         userEmailTextView.setText(user?.email)
+        Log.d("displayname", "onCreate: {$user.email")
 
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

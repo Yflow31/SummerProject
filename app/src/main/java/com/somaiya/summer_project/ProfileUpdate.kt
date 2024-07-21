@@ -21,6 +21,11 @@ class ProfileUpdate : AppCompatActivity() {
 
     lateinit var updatebtn: Button
     lateinit var backbtn: Button
+    lateinit var displaynametxt: EditText
+    lateinit var emailtxt: EditText
+    lateinit var phonenotxt: EditText
+    lateinit var divtxt: EditText
+
 
     private val profileRepository = RepositoryProfile()
     private val ViewModelProfile: ViewModelProfile by viewModels {
@@ -36,33 +41,34 @@ class ProfileUpdate : AppCompatActivity() {
         lastnametxt = findViewById(R.id.lastnametxt)
         coursenametxt = findViewById(R.id.coursenametxt)
         rollnotxt = findViewById(R.id.rollnotxt)
+        emailtxt = findViewById(R.id.emailtxt)
+        phonenotxt = findViewById(R.id.phonenotxt)
+        divtxt = findViewById(R.id.divtxt)
 
         //Button
         updatebtn = findViewById(R.id.updatebtn)
         backbtn = findViewById(R.id.backbtn)
+        displaynametxt = findViewById(R.id.displaynametxt)
 
         updatebtn.setOnClickListener {
             lifecycleScope.launch {
                 val firstname = firstnametxt.text.toString()
                 val lastname = lastnametxt.text.toString()
-                val coursename = coursenametxt.text.toString()
-                val rollno = rollnotxt.text.toString()
-                val email = "john.mckinley@examplepetstore.com"
-                val div = "B"
-                if (firstname.isNotEmpty() || lastname.isNotEmpty() || coursename.isNotEmpty() || rollno.isNotEmpty()) {
-                    val profile = ProfileData(firstname, lastname ,email, coursename, div, rollno)
+                val course = coursenametxt.text.toString()
+                val rollNo = rollnotxt.text.toString()
+                val displayname = displaynametxt.text.toString()
+                val email = emailtxt.text.toString()
+                val phonenumber = phonenotxt.text.toString()
+                val div = divtxt.text.toString()
+                val role = "student"
+                if (firstname.isNotEmpty() || lastname.isNotEmpty() || course.isNotEmpty() || rollNo.isNotEmpty()) {
+                    val profile = ProfileData(firstname, lastname,displayname,phonenumber,email,course, div,role,rollNo)
                     updateprf(profile)
                 }
             }
         }
     }
 
-//    val firstName: String,
-//    val lastName: String,
-//    val email: String,
-//    val course: String,
-//    val div: String,
-//    val rollNo: String
     private suspend fun updateprf(profile: ProfileData) {
         ViewModelProfile.updateProfile(profile)
     }
