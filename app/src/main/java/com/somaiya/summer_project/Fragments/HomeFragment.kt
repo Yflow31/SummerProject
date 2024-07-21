@@ -12,36 +12,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.somaiya.summer_project.R
 import com.somaiya.summer_project.ApplyForForm
 import com.somaiya.summer_project.RecyclerReasons.MyAdapter
-import com.somaiya.summer_project.RecyclerReasons.Reasons
+import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.somaiya.summer_project.applyform.Model.ApplyFormData
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
 
-    lateinit var recyclerviewreason: RecyclerView
-
-    lateinit var applyform: ArrayList<ApplyFormData>
-
-    lateinit var reasonAdapter: MyAdapter
-
-    lateinit var db: FirebaseFirestore
-
-    lateinit var auth: FirebaseAuth
-
+    private lateinit var recyclerviewreason: RecyclerView
+    private lateinit var applyform: ArrayList<ApplyFormData>
+    private lateinit var reasonAdapter: MyAdapter
+    private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
-
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -53,33 +36,81 @@ class HomeFragment : Fragment() {
         reasonAdapter = MyAdapter(applyform)
         recyclerviewreason.adapter = reasonAdapter
 
-
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
         val currentUser = auth.currentUser
 
         if (currentUser != null) {
+            val userDocRef = db.collection("USERS").document(currentUser.uid)
+            userDocRef.get().addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val role = documentSnapshot.getString("role")
+                    if (role != null) {
+                        when (role) {
+                            "admin", "teacher" -> {
+                                db.collection("REASONS").get()
+                                    .addOnSuccessListener { querySnapshot ->
+                                        for (document in querySnapshot.documents) {
+                                            val location = document.getString("location")
+                                            val reasonForBeingLate = document.getString("reasonForBeingLate")
+                                            val timesLate = document.getString("timesLate")
+                                            val userEmail = document.getString("userEmail")
 
-            db.collection("users")
-                .document(currentUser.uid)
-                .collection("reasons")
-                .get()
-                .addOnSuccessListener { documents ->
-                    for (document in documents) {
-                        val formData = document.toObject(ApplyFormData::class.java)
-                        applyform.add(formData)
+                                            if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
+                                                val formData = ApplyFormData(
+                                                    reasonForBeingLate,
+                                                    location,
+                                                    timesLate,
+                                                    userEmail
+                                                )
+                                                applyform.add(formData)
+                                            }
+                                        }
+                                        reasonAdapter.notifyDataSetChanged()
+                                    }
+                            }
+
+                            "student" -> {
+                                db.collection("users").document(currentUser.uid)
+                                    .collection("reasons").get()
+                                    .addOnSuccessListener { querySnapshot ->
+                                        for (document in querySnapshot.documents) {
+                                            val location = document.getString("location")
+                                            val reasonForBeingLate = document.getString("reasonForBeingLate")
+                                            val timesLate = document.getString("timesLate")
+                                            val userEmail = document.getString("userEmail")
+
+                                            if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
+                                                val formData = ApplyFormData(
+                                                    location,
+                                                    reasonForBeingLate,
+                                                    timesLate,
+                                                    userEmail
+                                                )
+                                                applyform.add(formData)
+                                            }
+                                        }
+                                        reasonAdapter.notifyDataSetChanged()
+                                    }
+                            }
+                        }
+                    } else {
+                        Log.d("UserRole", "Role field is missing")
                     }
-                    reasonAdapter.notifyDataSetChanged()
+                } else {
+                    Log.d("UserDoc", "User document does not exist")
                 }
+            }.addOnFailureListener { e ->
+                Log.e("FirebaseError", "Error fetching user document", e)
+            }
         }
 
         val fab = view.findViewById<View>(R.id.fab)
         fab.setOnClickListener {
-            val Intent = Intent(activity, ApplyForForm::class.java)
-            startActivity(Intent)
+            val intent = Intent(activity, ApplyForForm::class.java)
+            startActivity(intent)
         }
         return view
     }
-
 }
