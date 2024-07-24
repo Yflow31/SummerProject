@@ -26,7 +26,6 @@ class RepositorySignUp {
                         "role" to dataSignUp.role,
                         "isactive" to true
                     )
-
                     userRef.set(data)
                 }
             }

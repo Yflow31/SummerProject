@@ -1,199 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ProfileUpdate">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Profile Update"
-        android:textSize="30sp" />
-
-
     <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="First Name: "
-            android:textSize="20sp" />
+            android:layout_gravity="center_horizontal"
+            android:text="Profile Update"
+            android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/firstnametxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: Vijay"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name: "
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last Name: "
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/firstnametxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: Vijay"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/lastnametxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: Sharma"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Name: "
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Display Name: "
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/lastnametxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: Sharma"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/displaynametxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: Betanoobie"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Display Name: "
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Course Name: "
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/displaynametxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: Betanoobie"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/coursenametxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: MCA"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Name: "
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Roll No: "
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/coursenametxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: MCA"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/rollnotxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: 44"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roll No: "
+                android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/rollnotxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: 44"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Phone no:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/phonenotxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: 1234567890"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone no:"
+                android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <EditText
+                android:id="@+id/phonenotxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: 1234567890"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email: "
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/emailtxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: example@gmail.com"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: "
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Div: "
-            android:textSize="20sp" />
+            <EditText
+                android:id="@+id/emailtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: example@gmail.com"
+                android:textSize="20sp" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/divtxt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Eg: MCA-A"
-            android:textSize="20sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Div: "
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/divtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Eg: MCA-A"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/updatebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Update" />
+
+        <Button
+            android:id="@+id/backbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Go Back To Main Page" />
     </LinearLayout>
-
-
-    <Button
-        android:id="@+id/updatebtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Update" />
-
-    <Button
-        android:id="@+id/backbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Go Back To Main Page" />
-
-
-</LinearLayout>
+</ScrollView>
