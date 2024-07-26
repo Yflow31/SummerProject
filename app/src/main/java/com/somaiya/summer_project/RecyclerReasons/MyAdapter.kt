@@ -29,7 +29,7 @@ class MyAdapter(private val applyform: ArrayList<ApplyFormData>): RecyclerView.A
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val applyformcurrent = applyform[position]
-        holder.email.text = applyformcurrent.userEmail
+        holder.email.text = applyformcurrent.email
         holder.nooftimeslate.text = applyformcurrent.timesLate
         holder.reason.text = applyformcurrent.reasonForBeingLate
         holder.location.text = applyformcurrent.location

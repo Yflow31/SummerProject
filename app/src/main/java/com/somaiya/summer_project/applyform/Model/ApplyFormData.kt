@@ -4,5 +4,6 @@ data class ApplyFormData(
     val reasonForBeingLate: String = "", // Provide default values
     val location: String = "",
     val timesLate: String = "",
-    val userEmail: String = ""
+    val email: String = "",
+    val userId: String = ""
 )

@@ -20,7 +20,6 @@ class RepositoryProfile {
                 "lastName" to form.lastName,
                 "displayName" to form.displayName,
                 "phoneNumber" to form.phoneNumber,
-                "email" to form.email,
                 "course" to form.course,
                 "div" to form.div,
                 "role" to form.role,

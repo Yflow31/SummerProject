@@ -37,7 +37,6 @@ class ProfileFragment : Fragment() {
         val lastnametxt = view.findViewById<TextView>(R.id.lastnametxt)
         val displaynametxt = view.findViewById<TextView>(R.id.displaynametxt)
         val phonenotxt = view.findViewById<TextView>(R.id.phonenotxt)
-        val emailtxt = view.findViewById<TextView>(R.id.emailtxt)
         val coursetxt = view.findViewById<TextView>(R.id.coursetxt)
         val divtxt = view.findViewById<TextView>(R.id.divtxt)
         val roletxt = view.findViewById<TextView>(R.id.roletxt)
@@ -56,7 +55,6 @@ class ProfileFragment : Fragment() {
                             lastnametxt?.text = userDataMap["lastName"] as String?
                             displaynametxt?.text = userDataMap["displayName"] as String?
                             phonenotxt?.text = userDataMap["phoneNumber"] as String?
-                            emailtxt?.text = userDataMap["email"] as String?
                             coursetxt?.text = userDataMap["course"] as String?
                             divtxt?.text = userDataMap["div"] as String?
                             roletxt?.text = userDataMap["role"] as String?

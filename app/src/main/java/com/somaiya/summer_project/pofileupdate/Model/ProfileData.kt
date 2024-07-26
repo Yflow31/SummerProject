@@ -5,7 +5,6 @@ data class ProfileData(
     val lastName: String,
     val displayName: String,
     val phoneNumber: String,
-    val email: String,
     val course: String,
     val div: String,
     val role: String,

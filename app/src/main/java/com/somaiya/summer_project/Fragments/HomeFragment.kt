@@ -76,17 +76,18 @@ class HomeFragment : Fragment() {
                                     .collection("reasons").get()
                                     .addOnSuccessListener { querySnapshot ->
                                         for (document in querySnapshot.documents) {
+                                            val userEmail = document.getString("email")
                                             val location = document.getString("location")
                                             val reasonForBeingLate = document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
-                                            val userEmail = document.getString("userEmail")
+
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
                                                 val formData = ApplyFormData(
-                                                    location,
-                                                    reasonForBeingLate,
-                                                    timesLate,
-                                                    userEmail
+                                                    reasonForBeingLate = reasonForBeingLate, // Use named parameters for clarity
+                                                    location = location,
+                                                    timesLate = timesLate,
+                                                    email = userEmail
                                                 )
                                                 applyform.add(formData)
                                             }

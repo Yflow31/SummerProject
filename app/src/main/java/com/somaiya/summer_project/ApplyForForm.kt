@@ -54,10 +54,11 @@ class ApplyForForm : AppCompatActivity() {
                 val reason = reason_for_being_late.text.toString()
                 val location = location.text.toString()
                 val times_late = times_late.text.toString()
-                val email = user?.email.toString()
+                val userid = user?.uid ?: ""
+                val email = user?.email ?: ""
 
                 if (reason.isNotEmpty() || location.isNotEmpty() || times_late.isNotEmpty()) {
-                    val form = ApplyFormData(reason, location, times_late,email)
+                    val form = ApplyFormData(reason,location,times_late,email,userid)
                     submitform(form)
                 }
             }

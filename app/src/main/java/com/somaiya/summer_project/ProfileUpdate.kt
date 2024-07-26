@@ -23,7 +23,6 @@ class ProfileUpdate : AppCompatActivity() {
     lateinit var updatebtn: Button
     lateinit var backbtn: Button
     lateinit var displaynametxt: EditText
-    lateinit var emailtxt: EditText
     lateinit var phonenotxt: EditText
     lateinit var divtxt: EditText
     lateinit var auth: FirebaseAuth
@@ -43,7 +42,6 @@ class ProfileUpdate : AppCompatActivity() {
         lastnametxt = findViewById(R.id.lastnametxt)
         coursenametxt = findViewById(R.id.coursenametxt)
         rollnotxt = findViewById(R.id.rollnotxt)
-        emailtxt = findViewById(R.id.emailtxt)
         phonenotxt = findViewById(R.id.phonenotxt)
         divtxt = findViewById(R.id.divtxt)
 
@@ -63,12 +61,11 @@ class ProfileUpdate : AppCompatActivity() {
                 val course = coursenametxt.text.toString()
                 val rollNo = rollnotxt.text.toString()
                 val displayname = displaynametxt.text.toString()
-                val email = currentUser?.email ?: ""
                 val phonenumber = phonenotxt.text.toString()
                 val div = divtxt.text.toString()
                 val role = "student"
                 if (firstname.isNotEmpty() || lastname.isNotEmpty() || course.isNotEmpty() || rollNo.isNotEmpty()) {
-                    val profile = ProfileData(firstname, lastname,displayname,phonenumber,email,course, div,role,rollNo)
+                    val profile = ProfileData(firstname, lastname,displayname,phonenumber,course, div,role,rollNo)
                     updateprf(profile)
                 }
             }
