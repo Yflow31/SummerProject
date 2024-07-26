@@ -6,6 +6,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.somaiya.summer_project.pofileupdate.Model.ProfileData
 import com.somaiya.summer_project.pofileupdate.Repository.RepositoryProfile
 import com.somaiya.summer_project.pofileupdate.Repository.ViewModelFactoryProfile
@@ -25,6 +26,7 @@ class ProfileUpdate : AppCompatActivity() {
     lateinit var emailtxt: EditText
     lateinit var phonenotxt: EditText
     lateinit var divtxt: EditText
+    lateinit var auth: FirebaseAuth
 
 
     private val profileRepository = RepositoryProfile()
@@ -50,6 +52,10 @@ class ProfileUpdate : AppCompatActivity() {
         backbtn = findViewById(R.id.backbtn)
         displaynametxt = findViewById(R.id.displaynametxt)
 
+        //Firebase
+        auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+
         updatebtn.setOnClickListener {
             lifecycleScope.launch {
                 val firstname = firstnametxt.text.toString()
@@ -57,7 +63,7 @@ class ProfileUpdate : AppCompatActivity() {
                 val course = coursenametxt.text.toString()
                 val rollNo = rollnotxt.text.toString()
                 val displayname = displaynametxt.text.toString()
-                val email = emailtxt.text.toString()
+                val email = currentUser?.email ?: ""
                 val phonenumber = phonenotxt.text.toString()
                 val div = divtxt.text.toString()
                 val role = "student"
