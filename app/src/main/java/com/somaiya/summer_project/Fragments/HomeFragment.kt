@@ -17,8 +17,9 @@ import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.RecyclerReasons.ApprovalListener
+import com.somaiya.summer_project.utils.ApprovalConstant
 
-class HomeFragment : Fragment() , ApprovalListener {
+class HomeFragment : Fragment(), ApprovalListener {
 
     private lateinit var recyclerviewreason: RecyclerView
     private lateinit var applyform: ArrayList<ApplyFormData>
@@ -35,7 +36,7 @@ class HomeFragment : Fragment() , ApprovalListener {
         recyclerviewreason = view.findViewById(R.id.recyclerviewreason)
         recyclerviewreason.layoutManager = LinearLayoutManager(context)
         applyform = arrayListOf()
-        reasonAdapter = MyAdapter(applyform,this)
+        reasonAdapter = MyAdapter(applyform, this)
         recyclerviewreason.adapter = reasonAdapter
 
         db = FirebaseFirestore.getInstance()
@@ -50,25 +51,33 @@ class HomeFragment : Fragment() , ApprovalListener {
                     val role = documentSnapshot.getString("role")
                     if (role != null) {
                         when (role) {
-                            "admin", "teacher" -> {
+                            "admin" -> {
                                 db.collection("REASONS").get()
                                     .addOnSuccessListener { querySnapshot ->
                                         for (document in querySnapshot.documents) {
+
+
+                                            val userEmail = document.getString("email")
                                             val location = document.getString("location")
-                                            val reasonForBeingLate = document.getString("reasonForBeingLate")
+                                            val reasonForBeingLate =
+                                                document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
-                                            val userEmail = document.getString("userEmail")
-                                            val checkboxChecked = document.getBoolean("checkboxChecked")
+                                            val checkboxChecked =
+                                                document.getBoolean("checkboxChecked")
                                             val reasonId = document.getString("reasonId")
+                                            val approvalStatus =
+                                                document.getString("approvalStatus")
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
                                                 val formData = ApplyFormData(
-                                                    reasonForBeingLate,
-                                                    location,
-                                                    timesLate,
-                                                    userEmail,
+                                                    reasonForBeingLate = reasonForBeingLate, // Use named parameters for clarity
+                                                    location = location,
+                                                    timesLate = timesLate,
+                                                    email = userEmail,
                                                     isCheckboxChecked = checkboxChecked ?: false,
-                                                    reasonId = reasonId ?: ""
+                                                    reasonId = reasonId ?: "",
+                                                    approvalStatus = approvalStatus
+                                                        ?: ApprovalConstant.PENDING.name
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -78,16 +87,20 @@ class HomeFragment : Fragment() , ApprovalListener {
                             }
 
                             "student" -> {
-                                db.collection("users").document(currentUser.uid)
+                                db.collection("USERS").document(currentUser.uid)
                                     .collection("reasons").get()
                                     .addOnSuccessListener { querySnapshot ->
                                         for (document in querySnapshot.documents) {
                                             val userEmail = document.getString("email")
                                             val location = document.getString("location")
-                                            val reasonForBeingLate = document.getString("reasonForBeingLate")
+                                            val reasonForBeingLate =
+                                                document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
-                                            val checkboxChecked = document.getBoolean("checkboxChecked")
+                                            val checkboxChecked =
+                                                document.getBoolean("checkboxChecked")
                                             val reasonId = document.getString("reasonId")
+                                            val approvalStatus =
+                                                document.getString("approvalStatus")
 
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
@@ -97,7 +110,9 @@ class HomeFragment : Fragment() , ApprovalListener {
                                                     timesLate = timesLate,
                                                     email = userEmail,
                                                     isCheckboxChecked = checkboxChecked ?: false,
-                                                    reasonId = reasonId ?: ""
+                                                    reasonId = reasonId ?: "",
+                                                    approvalStatus = approvalStatus
+                                                        ?: ApprovalConstant.PENDING.name
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -118,7 +133,6 @@ class HomeFragment : Fragment() , ApprovalListener {
         }
 
 
-
         val fab = view.findViewById<View>(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(activity, ApplyForForm::class.java)
@@ -127,18 +141,23 @@ class HomeFragment : Fragment() , ApprovalListener {
         return view
     }
 
-    override fun onApprovalResult(isApproved: Boolean,position: Int, reasonId: String) {
-        Log.d("ischecked", "{$reasonId}")
+    override fun onApprovalResult(isApproved: Boolean, position: Int, reasonId: String) {
+        var status: String = ApprovalConstant.PENDING.name
         // Remove the item from the list
+        if (isApproved) {
+            //reason is approved
+            status = ApprovalConstant.ACCEPTED.name
+        } else {
+            status = ApprovalConstant.REJECTED.name
+        }
 
         // Update the isChecked field in Firestore
         db.collection("REASONS")
             .document(reasonId)
-            .get()
+            .update("approvalStatus", status)
             .addOnSuccessListener {
-                it.reference.update("checkboxChecked", isApproved)
-                applyform.removeAt(position)
-                reasonAdapter.notifyItemRemoved(position)
+                applyform[position].approvalStatus = status
+                reasonAdapter.notifyItemChanged(position)
             }
             .addOnFailureListener { exception ->
                 Log.w("Firestore", "Error getting documents: ", exception)
