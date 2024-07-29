@@ -5,5 +5,7 @@ data class ApplyFormData(
     val location: String = "",
     val timesLate: String = "",
     val email: String = "",
-    val userId: String = ""
+    val userId: String = "",
+    var isCheckboxChecked: Boolean = false,
+    var reasonId:String = ""
 )

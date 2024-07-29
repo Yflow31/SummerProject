@@ -12,20 +12,24 @@ class RepositoryApplyForm {
 
     suspend fun submitForm(form: ApplyFormData) {
 
+        val reasonId = firestore.collection("REASONS").document().id
+        form.reasonId = reasonId
+
         user?.let {
+
             firestore
                 .collection("users")
                 .document(it.uid)
                 .collection("reasons")
-                .add(form)
+                .document(reasonId)
+                .set(form)
         }
 
         user?.let {
-            val userid = it.uid
-
             firestore
                 .collection("REASONS")
-                .add(form)
+                .document(reasonId)
+                .set(form)
         }
 
     }

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.somaiya.summer_project.R
@@ -15,8 +16,9 @@ import com.somaiya.summer_project.RecyclerReasons.MyAdapter
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.somaiya.summer_project.RecyclerReasons.ApprovalListener
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment() , ApprovalListener {
 
     private lateinit var recyclerviewreason: RecyclerView
     private lateinit var applyform: ArrayList<ApplyFormData>
@@ -33,7 +35,7 @@ class HomeFragment : Fragment() {
         recyclerviewreason = view.findViewById(R.id.recyclerviewreason)
         recyclerviewreason.layoutManager = LinearLayoutManager(context)
         applyform = arrayListOf()
-        reasonAdapter = MyAdapter(applyform)
+        reasonAdapter = MyAdapter(applyform,this)
         recyclerviewreason.adapter = reasonAdapter
 
         db = FirebaseFirestore.getInstance()
@@ -56,13 +58,17 @@ class HomeFragment : Fragment() {
                                             val reasonForBeingLate = document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
                                             val userEmail = document.getString("userEmail")
+                                            val checkboxChecked = document.getBoolean("checkboxChecked")
+                                            val reasonId = document.getString("reasonId")
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
                                                 val formData = ApplyFormData(
                                                     reasonForBeingLate,
                                                     location,
                                                     timesLate,
-                                                    userEmail
+                                                    userEmail,
+                                                    isCheckboxChecked = checkboxChecked ?: false,
+                                                    reasonId = reasonId ?: ""
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -80,6 +86,8 @@ class HomeFragment : Fragment() {
                                             val location = document.getString("location")
                                             val reasonForBeingLate = document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
+                                            val checkboxChecked = document.getBoolean("checkboxChecked")
+                                            val reasonId = document.getString("reasonId")
 
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
@@ -87,7 +95,9 @@ class HomeFragment : Fragment() {
                                                     reasonForBeingLate = reasonForBeingLate, // Use named parameters for clarity
                                                     location = location,
                                                     timesLate = timesLate,
-                                                    email = userEmail
+                                                    email = userEmail,
+                                                    isCheckboxChecked = checkboxChecked ?: false,
+                                                    reasonId = reasonId ?: ""
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -107,11 +117,31 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+
         val fab = view.findViewById<View>(R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(activity, ApplyForForm::class.java)
             startActivity(intent)
         }
         return view
+    }
+
+    override fun onApprovalResult(isApproved: Boolean,position: Int, reasonId: String) {
+        Log.d("ischecked", "{$reasonId}")
+        // Remove the item from the list
+
+        // Update the isChecked field in Firestore
+        db.collection("REASONS")
+            .document(reasonId)
+            .get()
+            .addOnSuccessListener {
+                it.reference.update("checkboxChecked", isApproved)
+                applyform.removeAt(position)
+                reasonAdapter.notifyItemRemoved(position)
+            }
+            .addOnFailureListener { exception ->
+                Log.w("Firestore", "Error getting documents: ", exception)
+            }
     }
 }

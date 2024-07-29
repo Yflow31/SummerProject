@@ -29,6 +29,7 @@ class ApplyForForm : AppCompatActivity() {
     lateinit var backtomainbtn: Button
 
 
+
     private val applyFormRepository = RepositoryApplyForm()
     private val ViewModelApplyForm: ViewModelApplyForm by viewModels {
         ViewModelFactoryApplyForm(applyFormRepository)
@@ -57,8 +58,9 @@ class ApplyForForm : AppCompatActivity() {
                 val userid = user?.uid ?: ""
                 val email = user?.email ?: ""
 
+
                 if (reason.isNotEmpty() || location.isNotEmpty() || times_late.isNotEmpty()) {
-                    val form = ApplyFormData(reason,location,times_late,email,userid)
+                    val form = ApplyFormData(reason,location,times_late,email,userid,false,reasonId = "")
                     submitform(form)
                 }
             }
