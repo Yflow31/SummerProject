@@ -1,32 +1,46 @@
 package com.somaiya.summer_project.RecyclerReasons
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CheckBox
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Visibility
+import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.R
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
+import com.somaiya.summer_project.utils.ApprovalConstant
 
-class MyAdapter(private val applyform: ArrayList<ApplyFormData>, private val listener: ApprovalListener): RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(
+    private val applyform: ArrayList<ApplyFormData>,
+    private val listener: ApprovalListener
+) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
 
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val email = itemView.findViewById<TextView>(R.id.emailrc)
         val nooftimeslate = itemView.findViewById<TextView>(R.id.nooftimeslaterc)
         val reason = itemView.findViewById<TextView>(R.id.reasonrc)
         val location = itemView.findViewById<TextView>(R.id.locationrc)
-        val checkbox = itemView.findViewById<CheckBox>(R.id.checkbox)
+        val accept = itemView.findViewById<Button>(R.id.approval_status_accept)
+        val reject = itemView.findViewById<Button>(R.id.approval_status_reject)
+        val status = itemView.findViewById<Chip>(R.id.approval_status_label)
+        val btnLayout = itemView.findViewById<LinearLayout>(R.id.approval_status_btn_layout)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.activity_reason_card, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.activity_reason_card, parent, false)
         return MyViewHolder(view)
     }
 
@@ -41,16 +55,48 @@ class MyAdapter(private val applyform: ArrayList<ApplyFormData>, private val lis
         holder.reason.text = applyformcurrent.reasonForBeingLate
         holder.location.text = applyformcurrent.location
 
-        // Set the initial checked state of the checkbox
-        holder.checkbox.isChecked = applyformcurrent.isCheckboxChecked
 
-        // Handle the checkbox state change
-        holder.checkbox.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                listener.onApprovalResult(true,position,applyformcurrent.reasonId)
-            } else {
-                Log.d("ischecked", "false")
+
+        when (applyformcurrent.approvalStatus) {
+            ApprovalConstant.PENDING.name -> {
+                Log.d("STATUS", "PENDING")
+                //show the buttons
+                holder.btnLayout.visibility = View.VISIBLE
+
             }
+
+            ApprovalConstant.ACCEPTED.name -> {
+                //show accepted badge
+                Log.d("STATUS", "ACCEPTED")
+                holder.status.visibility = View.VISIBLE
+                holder.status.text = ApprovalConstant.ACCEPTED.name
+                holder.status.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#90EE90"))
+
+                holder.btnLayout.visibility = View.GONE
+
+            }
+
+            ApprovalConstant.REJECTED.name -> {
+                //show rejected badge
+                Log.d("STATUS", "REJECTED")
+                holder.status.visibility = View.VISIBLE
+                holder.status.text = ApprovalConstant.REJECTED.name
+                holder.status.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#ff8389"))
+
+
+                holder.btnLayout.visibility = View.GONE
+            }
+
+
         }
+
+        holder.accept.setOnClickListener {
+            listener.onApprovalResult(true, position, applyformcurrent.reasonId)
+        }
+
+        holder.reject.setOnClickListener {
+            listener.onApprovalResult(false, position, applyformcurrent.reasonId)
+        }
+
     }
 }

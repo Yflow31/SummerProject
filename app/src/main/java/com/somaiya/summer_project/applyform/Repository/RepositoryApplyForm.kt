@@ -18,7 +18,7 @@ class RepositoryApplyForm {
         user?.let {
 
             firestore
-                .collection("users")
+                .collection("USERS")
                 .document(it.uid)
                 .collection("reasons")
                 .document(reasonId)
