@@ -60,7 +60,7 @@ class ApplyForForm : AppCompatActivity() {
 
 
                 if (reason.isNotEmpty() || location.isNotEmpty() || times_late.isNotEmpty()) {
-                    val form = ApplyFormData(reason,location,times_late,email,userid,false,reasonId = "")
+                    val form = ApplyFormData(reason,location,times_late,email,userid,reasonId = "")
                     submitform(form)
                 }
             }

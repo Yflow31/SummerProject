@@ -82,8 +82,6 @@ class MyAdapter(
                 holder.status.visibility = View.VISIBLE
                 holder.status.text = ApprovalConstant.REJECTED.name
                 holder.status.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#ff8389"))
-
-
                 holder.btnLayout.visibility = View.GONE
             }
 

@@ -12,7 +12,7 @@ class RepositoryApplyForm {
 
     suspend fun submitForm(form: ApplyFormData) {
 
-        val reasonId = firestore.collection("REASONS").document().id
+        val reasonId = firestore.collection("ReasonsForAdmin").document().id
         form.reasonId = reasonId
 
         user?.let {
@@ -27,7 +27,7 @@ class RepositoryApplyForm {
 
         user?.let {
             firestore
-                .collection("REASONS")
+                .collection("ReasonsForAdmin")
                 .document(reasonId)
                 .set(form)
         }

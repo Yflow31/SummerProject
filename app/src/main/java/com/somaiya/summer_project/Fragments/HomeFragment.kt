@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), ApprovalListener {
                     if (role != null) {
                         when (role) {
                             "admin" -> {
-                                db.collection("REASONS").get()
+                                db.collection("ReasonsForAdmin").get()
                                     .addOnSuccessListener { querySnapshot ->
                                         for (document in querySnapshot.documents) {
 
@@ -62,8 +62,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                             val reasonForBeingLate =
                                                 document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
-                                            val checkboxChecked =
-                                                document.getBoolean("checkboxChecked")
                                             val reasonId = document.getString("reasonId")
                                             val approvalStatus =
                                                 document.getString("approvalStatus")
@@ -74,7 +72,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     location = location,
                                                     timesLate = timesLate,
                                                     email = userEmail,
-                                                    isCheckboxChecked = checkboxChecked ?: false,
                                                     reasonId = reasonId ?: "",
                                                     approvalStatus = approvalStatus
                                                         ?: ApprovalConstant.PENDING.name
@@ -96,8 +93,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                             val reasonForBeingLate =
                                                 document.getString("reasonForBeingLate")
                                             val timesLate = document.getString("timesLate")
-                                            val checkboxChecked =
-                                                document.getBoolean("checkboxChecked")
                                             val reasonId = document.getString("reasonId")
                                             val approvalStatus =
                                                 document.getString("approvalStatus")
@@ -109,7 +104,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     location = location,
                                                     timesLate = timesLate,
                                                     email = userEmail,
-                                                    isCheckboxChecked = checkboxChecked ?: false,
                                                     reasonId = reasonId ?: "",
                                                     approvalStatus = approvalStatus
                                                         ?: ApprovalConstant.PENDING.name
@@ -143,24 +137,48 @@ class HomeFragment : Fragment(), ApprovalListener {
 
     override fun onApprovalResult(isApproved: Boolean, position: Int, reasonId: String) {
         var status: String = ApprovalConstant.PENDING.name
-        // Remove the item from the list
+
         if (isApproved) {
-            //reason is approved
             status = ApprovalConstant.ACCEPTED.name
         } else {
             status = ApprovalConstant.REJECTED.name
         }
 
-        // Update the isChecked field in Firestore
-        db.collection("REASONS")
-            .document(reasonId)
-            .update("approvalStatus", status)
-            .addOnSuccessListener {
-                applyform[position].approvalStatus = status
-                reasonAdapter.notifyItemChanged(position)
+        // First, fetch the userId from the ReasonsForAdmin document
+        db.collection("ReasonsForAdmin").document(reasonId).get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val fetchedUserId = documentSnapshot.getString("userId")
+
+                    // Check if the fetched userId is not null
+                    if (fetchedUserId != null) {
+                        // Update the approval status in the ReasonsForAdmin collection
+                        db.collection("ReasonsForAdmin").document(reasonId)
+                            .update("approvalStatus", status)
+                            .addOnSuccessListener {
+                                applyform[position].approvalStatus = status
+                                reasonAdapter.notifyItemChanged(position)
+                            }
+                            .addOnFailureListener { exception ->
+                                Log.w("Firestore", "Error updating ReasonsForAdmin: ", exception)
+                            }
+
+                        // Update the approval status in the USERS collection
+                        db.collection("USERS").document(fetchedUserId)
+                            .collection("reasons").document(reasonId)
+                            .update("approvalStatus", status)
+                            .addOnFailureListener { exception ->
+                                Log.w("Firestore", "Error updating USERS reasons: ", exception)
+                            }
+                    } else {
+                        Log.w("Firestore", "userId not found in ReasonsForAdmin document")
+                    }
+                } else {
+                    Log.w("Firestore", "Reason document not found in ReasonsForAdmin")
+                }
             }
             .addOnFailureListener { exception ->
-                Log.w("Firestore", "Error getting documents: ", exception)
+                Log.w("Firestore", "Error fetching ReasonsForAdmin document: ", exception)
             }
     }
 }

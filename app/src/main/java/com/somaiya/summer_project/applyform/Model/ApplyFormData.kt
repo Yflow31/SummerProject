@@ -7,8 +7,7 @@ data class ApplyFormData(
     val location: String = "",
     val timesLate: String = "",
     val email: String = "",
-    val userId: String = "",
-    var isCheckboxChecked: Boolean = false,
+    var userId: String = "",
     var reasonId: String = "",
     var approvalStatus: String = ""
 ) {
