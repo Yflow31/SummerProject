@@ -2,16 +2,17 @@ package com.somaiya.summer_project
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.somaiya.summer_project.applyform.Repository.RepositoryApplyForm
 import com.somaiya.summer_project.applyform.Repository.ViewModelApplyForm
@@ -23,11 +24,12 @@ class ApplyForForm : AppCompatActivity() {
 
     lateinit var reason_for_being_late: EditText
     lateinit var location: EditText
-    lateinit var times_late: EditText
+    lateinit var times_late: TextView
 
     lateinit var submit_btn: Button
     lateinit var backtomainbtn: Button
 
+    private lateinit var firestore: FirebaseFirestore
 
 
     private val applyFormRepository = RepositoryApplyForm()
@@ -48,19 +50,33 @@ class ApplyForForm : AppCompatActivity() {
         submit_btn = findViewById(R.id.submitbtn)
         backtomainbtn = findViewById(R.id.backtomainbtn)
 
+        firestore = FirebaseFirestore.getInstance()
+
         val user = Firebase.auth.currentUser
+
+        firestore.collection("ReasonsForAdmin")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val count = task.result.size()
+                    times_late.text = count.toString()
+                    Log.d("times_late", "onCreate:{$times_late} ")
+                } else {
+                    Log.w("FirestoreCount", "Error getting documents.", task.exception)
+                }
+            }
+
 
         submit_btn.setOnClickListener {
             lifecycleScope.launch {
                 val reason = reason_for_being_late.text.toString()
                 val location = location.text.toString()
-                val times_late = times_late.text.toString()
                 val userid = user?.uid ?: ""
                 val email = user?.email ?: ""
 
 
-                if (reason.isNotEmpty() || location.isNotEmpty() || times_late.isNotEmpty()) {
-                    val form = ApplyFormData(reason,location,times_late,email,userid,reasonId = "")
+                if (reason.isNotEmpty() || location.isNotEmpty()) {
+                    val form = ApplyFormData(reason,location,times_late.text.toString(),email,userid,reasonId = "")
                     submitform(form)
                 }
             }

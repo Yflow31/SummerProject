@@ -15,6 +15,7 @@ class RepositoryApplyForm {
         val reasonId = firestore.collection("ReasonsForAdmin").document().id
         form.reasonId = reasonId
 
+
         user?.let {
 
             firestore

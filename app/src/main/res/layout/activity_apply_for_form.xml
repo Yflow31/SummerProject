@@ -54,10 +54,12 @@
         android:text="How Many Times Have You been Late"
         android:textSize="20sp"/>
 
-    <EditText
+    <TextView
         android:id="@+id/times_late"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="20sp"
+        android:textAlignment="center"
         android:hint="Number of times"/>
 
     <Button

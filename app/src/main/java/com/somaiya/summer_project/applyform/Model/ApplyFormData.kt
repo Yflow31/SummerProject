@@ -5,7 +5,7 @@ import com.somaiya.summer_project.utils.ApprovalConstant
 data class ApplyFormData(
     val reasonForBeingLate: String = "", // Provide default values
     val location: String = "",
-    val timesLate: String = "",
+    var timesLate: String = "",
     val email: String = "",
     var userId: String = "",
     var reasonId: String = "",
