@@ -54,7 +54,15 @@ class ApplyForForm : AppCompatActivity() {
 
         val user = Firebase.auth.currentUser
 
-        firestore.collection("ReasonsForAdmin")
+        if (user == null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+        firestore.collection("USERS").document(user?.uid ?: "")
+            .collection("reasons")
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -86,8 +94,6 @@ class ApplyForForm : AppCompatActivity() {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
         }
-
-
 
     }
 
