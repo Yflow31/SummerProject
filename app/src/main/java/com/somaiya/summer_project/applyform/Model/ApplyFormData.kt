@@ -1,6 +1,7 @@
 package com.somaiya.summer_project.applyform.Model
 
 import com.somaiya.summer_project.utils.ApprovalConstant
+import com.somaiya.summer_project.utils.ROLE
 
 data class ApplyFormData(
     val reasonForBeingLate: String = "", // Provide default values
@@ -9,9 +10,12 @@ data class ApplyFormData(
     val email: String = "",
     var userId: String = "",
     var reasonId: String = "",
-    var approvalStatus: String = ""
+    var approvalStatus: String = "",
+    var role:String = ""
 ) {
     init {
         approvalStatus = approvalStatus.ifEmpty { ApprovalConstant.PENDING.name }
+        role = role.ifEmpty { ROLE.student.name }
     }
+
 }

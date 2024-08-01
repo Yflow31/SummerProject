@@ -74,7 +74,8 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     email = userEmail,
                                                     reasonId = reasonId ?: "",
                                                     approvalStatus = approvalStatus
-                                                        ?: ApprovalConstant.PENDING.name
+                                                        ?: ApprovalConstant.PENDING.name,
+                                                    role = role
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -106,7 +107,8 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     email = userEmail,
                                                     reasonId = reasonId ?: "",
                                                     approvalStatus = approvalStatus
-                                                        ?: ApprovalConstant.PENDING.name
+                                                        ?: ApprovalConstant.PENDING.name,
+                                                    role = role
                                                 )
                                                 applyform.add(formData)
                                             }

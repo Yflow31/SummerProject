@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.R
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.somaiya.summer_project.utils.ApprovalConstant
+import com.somaiya.summer_project.utils.ROLE
 
 class MyAdapter(
     private val applyform: ArrayList<ApplyFormData>,
@@ -62,7 +63,10 @@ class MyAdapter(
             ApprovalConstant.PENDING.name -> {
                 Log.d("STATUS", "PENDING")
                 //show the buttons
-                holder.btnLayout.visibility = View.VISIBLE
+                if (applyformcurrent.role == ROLE.admin.name){
+                    //Approving button visiblity
+                    holder.btnLayout.visibility = View.VISIBLE
+                }
 
             }
 

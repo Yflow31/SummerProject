@@ -12,7 +12,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
-        android:src="@drawable/dehya" />
+        android:src="@drawable/profile" />
 
     <TextView
         android:id="@+id/user_name"

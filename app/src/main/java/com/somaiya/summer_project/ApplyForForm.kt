@@ -84,7 +84,7 @@ class ApplyForForm : AppCompatActivity() {
 
 
                 if (reason.isNotEmpty() || location.isNotEmpty()) {
-                    val form = ApplyFormData(reason,location,times_late.text.toString(),email,userid,reasonId = "")
+                    val form = ApplyFormData(reason,location,times_late.text.toString(),email,userid,reasonId = "",approvalStatus = "")
                     submitform(form)
                 }
             }

@@ -3,6 +3,7 @@ package com.somaiya.summer_project.applyform.Repository
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.tasks.await
 
 class RepositoryApplyForm {
 
@@ -13,6 +14,12 @@ class RepositoryApplyForm {
     suspend fun submitForm(form: ApplyFormData) {
 
         val reasonId = firestore.collection("ReasonsForAdmin").document().id
+        val role = firestore.collection("USERS").document(user?.uid ?: "").get().await().getString("role")
+
+
+        if (role != null) {
+            form.role = role
+        }
         form.reasonId = reasonId
 
 
