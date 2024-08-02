@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.RecyclerReasons.ApprovalListener
 import com.somaiya.summer_project.utils.ApprovalConstant
+import java.util.Calendar
 
 class HomeFragment : Fragment(), ApprovalListener {
 
@@ -26,6 +27,7 @@ class HomeFragment : Fragment(), ApprovalListener {
     private lateinit var reasonAdapter: MyAdapter
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +67,8 @@ class HomeFragment : Fragment(), ApprovalListener {
                                             val reasonId = document.getString("reasonId")
                                             val approvalStatus =
                                                 document.getString("approvalStatus")
+                                            val date = document.getString("currentdate")
+                                            val time = document.getString("currenttime")
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
                                                 val formData = ApplyFormData(
@@ -75,7 +79,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     reasonId = reasonId ?: "",
                                                     approvalStatus = approvalStatus
                                                         ?: ApprovalConstant.PENDING.name,
-                                                    role = role
+                                                    role = role,
+                                                    currentdate = date ?: "",
+                                                    currenttime = time ?: ""
+
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -97,6 +104,8 @@ class HomeFragment : Fragment(), ApprovalListener {
                                             val reasonId = document.getString("reasonId")
                                             val approvalStatus =
                                                 document.getString("approvalStatus")
+                                            val date = document.getString("currentdate")
+                                            val time = document.getString("currenttime")
 
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
@@ -108,7 +117,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     reasonId = reasonId ?: "",
                                                     approvalStatus = approvalStatus
                                                         ?: ApprovalConstant.PENDING.name,
-                                                    role = role
+                                                    role = role,
+                                                    currentdate = date ?: "",
+                                                    currenttime = time ?: ""
+
                                                 )
                                                 applyform.add(formData)
                                             }

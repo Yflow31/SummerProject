@@ -37,6 +37,9 @@ class MyAdapter(
         val reject = itemView.findViewById<Button>(R.id.approval_status_reject)
         val status = itemView.findViewById<Chip>(R.id.approval_status_label)
         val btnLayout = itemView.findViewById<LinearLayout>(R.id.approval_status_btn_layout)
+
+        val dtimerc = itemView.findViewById<TextView>(R.id.dtimerc)
+        val dtimerc1 = itemView.findViewById<TextView>(R.id.dtimerc1)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -55,8 +58,8 @@ class MyAdapter(
         holder.nooftimeslate.text = applyformcurrent.timesLate
         holder.reason.text = applyformcurrent.reasonForBeingLate
         holder.location.text = applyformcurrent.location
-
-
+        holder.dtimerc.text = applyformcurrent.currentdate
+        holder.dtimerc1.text = applyformcurrent.currenttime
 
 
         when (applyformcurrent.approvalStatus) {
@@ -67,7 +70,6 @@ class MyAdapter(
                     //Approving button visiblity
                     holder.btnLayout.visibility = View.VISIBLE
                 }
-
             }
 
             ApprovalConstant.ACCEPTED.name -> {

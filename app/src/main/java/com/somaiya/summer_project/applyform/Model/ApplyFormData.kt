@@ -11,7 +11,9 @@ data class ApplyFormData(
     var userId: String = "",
     var reasonId: String = "",
     var approvalStatus: String = "",
-    var role:String = ""
+    var role: String = "",
+    val currentdate: String = "",
+    val currenttime: String = ""
 ) {
     init {
         approvalStatus = approvalStatus.ifEmpty { ApprovalConstant.PENDING.name }
