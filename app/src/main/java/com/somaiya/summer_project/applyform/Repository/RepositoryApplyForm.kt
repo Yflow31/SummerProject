@@ -1,5 +1,6 @@
 package com.somaiya.summer_project.applyform.Repository
 
+import android.util.Log
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,6 +17,7 @@ class RepositoryApplyForm {
         val reasonId = firestore.collection("ReasonsForAdmin").document().id
         val role = firestore.collection("USERS").document(user?.uid ?: "").get().await().getString("role")
 
+        firestore.collection("USERS").document(user?.uid ?: "").update("canCreateNewReason", true)
 
         if (role != null) {
             form.role = role
@@ -24,7 +26,6 @@ class RepositoryApplyForm {
 
 
         user?.let {
-
             firestore
                 .collection("USERS")
                 .document(it.uid)

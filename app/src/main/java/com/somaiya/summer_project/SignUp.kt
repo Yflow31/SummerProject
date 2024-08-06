@@ -74,7 +74,7 @@ class SignUp : AppCompatActivity() {
 
                     val example = DataSignUp(
                         firstName, lastName, displayName, phoneNumber, email,
-                        course, div, role, password, rollNo, "true"
+                        course, div, role, password, rollNo, "true", false
                     )
                     signup(example)
                     val intent = Intent(this@SignUp, MainMenu::class.java)

@@ -100,8 +100,19 @@ class ApplyForForm : AppCompatActivity() {
                 }
             }
 
+        firestore.collection("USERS").document(user?.uid ?: "").get()
+            .addOnSuccessListener { documentSnapshot ->
+                if (documentSnapshot.exists()) {
+                    val canCreateNewReason = documentSnapshot.getBoolean("canCreateNewReason")
+                    if (canCreateNewReason == true) {
+                        submit_btn.isEnabled = false
+                    }
+                }
+            }
+
 
         submit_btn.setOnClickListener {
+
             lifecycleScope.launch {
                 val reason = reason_for_being_late.text.toString()
                 val location = location.text.toString()
@@ -109,7 +120,18 @@ class ApplyForForm : AppCompatActivity() {
                 val email = user?.email ?: ""
 
                 if (reason.isNotEmpty() || location.isNotEmpty()) {
-                    val form = ApplyFormData(reason,location,times_late.text.toString(),email,userid,reasonId = "",approvalStatus = "",role = "",currentdate = formatteddate,currenttime = formattedtime)
+                    val form = ApplyFormData(
+                        reason,
+                        location,
+                        times_late.text.toString(),
+                        email,
+                        userid,
+                        reasonId = "",
+                        approvalStatus = "",
+                        role = "",
+                        currentdate = formatteddate,
+                        currenttime = formattedtime
+                    )
                     submitform(form)
                 }
             }

@@ -82,7 +82,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     role = role,
                                                     currentdate = date ?: "",
                                                     currenttime = time ?: ""
-
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -120,7 +119,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                     role = role,
                                                     currentdate = date ?: "",
                                                     currenttime = time ?: ""
-
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -176,6 +174,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                             .addOnFailureListener { exception ->
                                 Log.w("Firestore", "Error updating ReasonsForAdmin: ", exception)
                             }
+
+                        //Update Can Create function
+                        db.collection("USERS").document(fetchedUserId).update("canCreateNewReason", false)
+                        db.collection("ReasonsForAdmin").document(reasonId).update("canCreateNewReason", false)
 
                         // Update the approval status in the USERS collection
                         db.collection("USERS").document(fetchedUserId)

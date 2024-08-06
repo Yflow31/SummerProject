@@ -70,6 +70,8 @@ class MyAdapter(
                     //Approving button visiblity
                     holder.btnLayout.visibility = View.VISIBLE
                 }
+                holder.status.visibility = View.VISIBLE
+                holder.status.text = ApprovalConstant.PENDING.name
             }
 
             ApprovalConstant.ACCEPTED.name -> {
@@ -78,7 +80,6 @@ class MyAdapter(
                 holder.status.visibility = View.VISIBLE
                 holder.status.text = ApprovalConstant.ACCEPTED.name
                 holder.status.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#90EE90"))
-
                 holder.btnLayout.visibility = View.GONE
 
             }

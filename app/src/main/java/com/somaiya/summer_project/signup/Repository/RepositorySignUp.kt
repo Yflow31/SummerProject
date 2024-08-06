@@ -24,7 +24,8 @@ class RepositorySignUp {
                         "div" to dataSignUp.div,
                         "rollNo" to dataSignUp.rollNo,
                         "role" to dataSignUp.role,
-                        "isactive" to true
+                        "isactive" to true,
+                        "canCreateNewReason" to false
                     )
                     userRef.set(data)
                 }

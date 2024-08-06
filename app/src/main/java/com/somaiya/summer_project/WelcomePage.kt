@@ -12,5 +12,6 @@ class WelcomePage : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_welcome_page)
 
+
     }
 }
