@@ -3,18 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/historyFragment">
 
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.somaiya.summer_project.Fragments.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" >
-        <argument
-            android:name="number"
-            app:argType="integer"
-            android:defaultValue="2" />
+        <action
+            android:id="@+id/action_historyFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.somaiya.summer_project.Fragments.HomeFragment"

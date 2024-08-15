@@ -12,6 +12,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -87,6 +88,7 @@ class ApplyForForm : AppCompatActivity() {
         dtimerc.text = formatteddate
         dtimerc1.text = formattedtime
 
+
         firestore.collection("USERS").document(user?.uid ?: "")
             .collection("reasons")
             .get()
@@ -106,6 +108,9 @@ class ApplyForForm : AppCompatActivity() {
                     val canCreateNewReason = documentSnapshot.getBoolean("canCreateNewReason")
                     if (canCreateNewReason == true) {
                         submit_btn.isEnabled = false
+                    }
+                    else{
+                        submit_btn.isEnabled = true
                     }
                 }
             }
@@ -133,6 +138,7 @@ class ApplyForForm : AppCompatActivity() {
                         currenttime = formattedtime
                     )
                     submitform(form)
+                    submit_btn.isEnabled = false
                 }
             }
         }
@@ -140,6 +146,7 @@ class ApplyForForm : AppCompatActivity() {
         backtomainbtn.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
+            finish()
         }
 
     }
