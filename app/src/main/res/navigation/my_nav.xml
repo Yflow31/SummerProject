@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.somaiya.summer_project.Fragments.HistoryFragment"
-        android:label="fragment_history"
+        android:label="Need to Rename"
         tools:layout="@layout/fragment_history" >
         <action
             android:id="@+id/action_historyFragment_to_profileFragment"
@@ -21,12 +21,12 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.somaiya.summer_project.Fragments.HomeFragment"
-        android:label="fragment_home"
+        android:label="Late Requests"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.somaiya.summer_project.Fragments.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Your Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/logOutFragment"

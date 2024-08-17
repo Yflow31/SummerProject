@@ -40,6 +40,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -76,4 +79,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
 // Annotation processor
     kapt ("androidx.lifecycle:lifecycle-compiler:2.8.1")
+
+    //Lottie
+    implementation ("com.airbnb.android:lottie:5.2.0")
 }

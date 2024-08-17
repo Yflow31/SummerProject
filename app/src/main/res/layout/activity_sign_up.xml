@@ -32,12 +32,7 @@
                 android:hint="Last Name"
                 android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/editTextDisplayName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Display Name"
-                android:inputType="textPersonName" />
+
 
             <EditText
                 android:id="@+id/editTextPhoneNumber"

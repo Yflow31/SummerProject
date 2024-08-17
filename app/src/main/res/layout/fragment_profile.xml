@@ -6,6 +6,8 @@
     tools:context=".Fragments.ProfileFragment">
 
     <LinearLayout
+        android:id="@+id/main"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

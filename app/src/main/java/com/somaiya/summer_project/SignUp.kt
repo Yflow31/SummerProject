@@ -42,7 +42,6 @@ class SignUp : AppCompatActivity() {
         // Initialize EditTexts
         editTextFirstName = findViewById(R.id.editTextFirstName)
         editTextLastName = findViewById(R.id.editTextLastName)
-        editTextDisplayName = findViewById(R.id.editTextDisplayName)
         editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber)
         editTextEmailAddress = findViewById(R.id.editTextEmailAddress)
         editTextCourse = findViewById(R.id.editTextCourse)
@@ -59,7 +58,7 @@ class SignUp : AppCompatActivity() {
             lifecycleScope.launch {
                 val firstName = editTextFirstName.text.toString()
                 val lastName = editTextLastName.text.toString()
-                val displayName = editTextDisplayName.text.toString()
+                val displayName = "$firstName $lastName"
                 val phoneNumber = editTextPhoneNumber.text.toString()
                 val email = editTextEmailAddress.text.toString()
                 val course = editTextCourse.text.toString()
@@ -68,12 +67,12 @@ class SignUp : AppCompatActivity() {
                 val password = editTextPassword.text.toString()
                 val rollNo = editTextRollNo.text.toString()
 
-                if (firstName.isNotEmpty() && lastName.isNotEmpty() && displayName.isNotEmpty() &&
+                if (firstName.isNotEmpty() && lastName.isNotEmpty() &&
                     phoneNumber.isNotEmpty() && email.isNotEmpty() && course.isNotEmpty() &&
                     div.isNotEmpty() && role.isNotEmpty() && password.isNotEmpty() && rollNo.isNotEmpty()) {
 
                     val example = DataSignUp(
-                        firstName, lastName, displayName, phoneNumber, email,
+                        firstName, lastName, displayName , phoneNumber, email,
                         course, div, role, password, rollNo, "true", false
                     )
                     signup(example)
@@ -82,7 +81,6 @@ class SignUp : AppCompatActivity() {
                 } else {
                     if (firstName.isEmpty()) editTextFirstName.error = "Please enter your first name"
                     if (lastName.isEmpty()) editTextLastName.error = "Please enter your last name"
-                    if (displayName.isEmpty()) editTextDisplayName.error = "Please enter your display name"
                     if (phoneNumber.isEmpty()) editTextPhoneNumber.error = "Please enter your phone number"
                     if (email.isEmpty()) editTextEmailAddress.error = "Please enter your email"
                     if (course.isEmpty()) editTextCourse.error = "Please enter your course"

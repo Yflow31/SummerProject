@@ -11,9 +11,13 @@ import com.somaiya.summer_project.pofileupdate.Model.ProfileData
 import com.somaiya.summer_project.pofileupdate.Repository.RepositoryProfile
 import com.somaiya.summer_project.pofileupdate.Repository.ViewModelFactoryProfile
 import com.somaiya.summer_project.pofileupdate.Repository.ViewModelProfile
+import com.somaiya.summer_project.utils.Loader
 import kotlinx.coroutines.launch
 
 class ProfileUpdate : AppCompatActivity() {
+
+    //Loaders
+
 
     lateinit var firstnametxt: EditText
     lateinit var lastnametxt: EditText
@@ -36,6 +40,8 @@ class ProfileUpdate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_update)
+
+
 
         //EditText
         firstnametxt = findViewById(R.id.firstnametxt)
@@ -75,4 +81,5 @@ class ProfileUpdate : AppCompatActivity() {
     private suspend fun updateprf(profile: ProfileData) {
         ViewModelProfile.updateProfile(profile)
     }
+
 }
