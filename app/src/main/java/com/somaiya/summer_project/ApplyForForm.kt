@@ -1,6 +1,7 @@
 package com.somaiya.summer_project
 
 import android.content.Intent
+import android.net.http.HttpException
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +13,6 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.firebase.Timestamp
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -21,12 +20,13 @@ import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.somaiya.summer_project.applyform.Repository.RepositoryApplyForm
 import com.somaiya.summer_project.applyform.Repository.ViewModelApplyForm
 import com.somaiya.summer_project.applyform.Repository.ViewModelFactoryApplyForm
-import com.somaiya.summer_project.R
+import com.somaiya.summer_project.timezone.retrofit.RetrofitClient
+import com.somaiya.summer_project.timezone.retrofit.TimeApiService
 import kotlinx.coroutines.launch
+import java.io.IOException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
-import java.util.Timer
 
 class ApplyForForm : AppCompatActivity() {
 
@@ -42,6 +42,7 @@ class ApplyForForm : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
 
 
+
     private val applyFormRepository = RepositoryApplyForm()
     private val ViewModelApplyForm: ViewModelApplyForm by viewModels {
         ViewModelFactoryApplyForm(applyFormRepository)
@@ -49,6 +50,8 @@ class ApplyForForm : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_apply_for_form)
