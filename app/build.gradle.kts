@@ -82,4 +82,10 @@ dependencies {
 
     //Lottie
     implementation ("com.airbnb.android:lottie:5.2.0")
+
+    //charts
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    //custom progress bar
+    implementation ("io.github.rezaiyan:levelprogressbar:1.0.3")
 }

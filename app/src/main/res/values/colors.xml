@@ -11,7 +11,22 @@
 
 
     <!--> Application colors<-->
-    <color name="primary">#B7202E</color>
+
+    <color name="app_bg">#F1F2F6</color>
+    <color name="primary">#3354F4</color>
+    <color name="primary_light_bg">#E6EAF5</color>
+    <color name="primary_inactive_icon">#A3AED0</color>
+    <color name="primary_text_color">#252C58</color>
+    <color name="primary_success_bg_color">#4D97CE71</color>
+    <color name="primary_success_icon_color">#43900C</color>
+
+
+    <color name="secondary_light_bg">#E6EAF5</color>
+    <color name="secondary_light_icon">#E6EAF5</color>
+    <color name="secondary_graph_label_color">#77838F</color>
+
+
+
     <color name="primary_variant">#FADBDE</color>
     <color name="grey">#919191</color>
     <color name="mainTextColor">#092C4C</color>
