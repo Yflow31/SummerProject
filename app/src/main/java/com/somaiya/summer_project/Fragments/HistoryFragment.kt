@@ -11,9 +11,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.Firebase
@@ -104,6 +108,7 @@ class HistoryFragment : Fragment() {
 */
 
         val barChart = view.findViewById<BarChart>(R.id.barChart)
+        val pieChart: PieChart = view.findViewById(R.id.barChart_2)
 
         val barEntries = ArrayList<BarEntry>()
         //calculate the late attendance
@@ -171,6 +176,47 @@ class HistoryFragment : Fragment() {
 
 
         barChart.animateY(1000)
+
+
+
+
+        //Pie chart
+        // Create some data entries
+        val entries = ArrayList<PieEntry>()
+        entries.add(PieEntry(40f, "On Time"))
+        entries.add(PieEntry(60f, "Late"))
+
+
+        // Create a DataSet
+        val dataSet = PieDataSet(entries, "Categories")
+        dataSet.colors = listOf(resources.getColor(R.color.primary_variant_1), resources.getColor(R.color.primary_variant_2)) // Set colors
+
+
+        // Create a PieData object and set it to the chart
+        val data = PieData(dataSet)
+        data.setValueFormatter(PercentageValueFormatter())
+        data.setValueTextSize(14f)
+        data.setValueTypeface(typeface)
+        pieChart.data = data
+
+
+        // Customize the chart
+        pieChart.setUsePercentValues(true)
+        pieChart.legend.isEnabled = false
+        pieChart.description.isEnabled = false
+        pieChart.isDrawHoleEnabled = true
+        pieChart.setHoleColor(Color.WHITE)
+        pieChart.setCenterTextColor(resources.getColor(R.color.secondary_graph_label_color))
+        pieChart.setEntryLabelTypeface(typeface)
+        pieChart.setCenterTextTypeface(typeface)
+        pieChart.setEntryLabelColor(resources.getColor(R.color.primary))
+        pieChart.setCenterTextSize(14f)
+        pieChart.setEntryLabelTextSize(14f)
+        pieChart.centerText = "Overall"
+        pieChart.animateY(1000)
+
+
+
 
         return view
     }

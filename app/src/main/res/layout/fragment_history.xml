@@ -211,7 +211,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/material_size_4">
 
-                            <com.github.mikephil.charting.charts.BarChart
+                            <com.github.mikephil.charting.charts.PieChart
                                 android:id="@+id/barChart_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="400dp" />
@@ -224,6 +224,34 @@
                 </RelativeLayout>
             </LinearLayout>
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/late_request_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/graph_layout"
+                android:layout_marginTop="@dimen/material_size_8"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:strokeWidth="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_size_12">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:itemCount="12"
+                        tools:listitem="@layout/item_dashboard_late_request"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
         </RelativeLayout>
 
