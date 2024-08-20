@@ -23,10 +23,9 @@ class BadgeTextView @JvmOverloads constructor(
 
     private fun applyCustomStyles() {
         // Set custom font (you can adjust this if needed)
-        typeface = Typeface.createFromAsset(context.assets, "font/lexend_regular.ttf")
 
         // Set default padding
-        setPadding(16, 8, 16, 8)
+//        setPadding(2, 1, 2, 1)
 
         // Set default background and text color (can be overridden via parameters)
         background = context.getDrawable(R.drawable.default_background)

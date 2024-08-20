@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.R
 import com.somaiya.summer_project.applyform.Model.ApplyFormData
 import com.somaiya.summer_project.utils.ApprovalConstant
+import com.somaiya.summer_project.utils.BadgeTextView
 import com.somaiya.summer_project.utils.ROLE
 
 class MyAdapter(
@@ -33,9 +34,9 @@ class MyAdapter(
         val nooftimeslate = itemView.findViewById<TextView>(R.id.nooftimeslaterc)
         val reason = itemView.findViewById<TextView>(R.id.reasonrc)
         val location = itemView.findViewById<TextView>(R.id.locationrc)
-        val accept = itemView.findViewById<Button>(R.id.approval_status_accept)
-        val reject = itemView.findViewById<Button>(R.id.approval_status_reject)
-        val status = itemView.findViewById<Chip>(R.id.approval_status_label)
+        val accept = itemView.findViewById<TextView>(R.id.approval_status_accept)
+        val reject = itemView.findViewById<TextView>(R.id.approval_status_reject)
+        val status = itemView.findViewById<BadgeTextView>(R.id.approval_status_label)
         val btnLayout = itemView.findViewById<LinearLayout>(R.id.approval_status_btn_layout)
 
         val dtimerc = itemView.findViewById<TextView>(R.id.dtimerc)
@@ -66,10 +67,12 @@ class MyAdapter(
             ApprovalConstant.PENDING.name -> {
                 Log.d("STATUS", "PENDING")
                 //show the buttons
-                if (applyformcurrent.role == ROLE.admin.name){
+                if (applyformcurrent.role == ROLE.admin.name) {
                     //Approving button visiblity
                     holder.btnLayout.visibility = View.VISIBLE
                 }
+                holder.status.setCustomBackgroundColor(Color.parseColor("#FDECD8"))
+                holder.status.setTextColor(Color.parseColor("#F7A23B"))
                 holder.status.visibility = View.VISIBLE
                 holder.status.text = ApprovalConstant.PENDING.name
             }
@@ -79,7 +82,8 @@ class MyAdapter(
                 Log.d("STATUS", "ACCEPTED")
                 holder.status.visibility = View.VISIBLE
                 holder.status.text = ApprovalConstant.ACCEPTED.name
-                holder.status.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#90EE90"))
+                holder.status.setCustomBackgroundColor(Color.parseColor("#CFF4E4"))
+                holder.status.setTextColor(Color.parseColor("#00AC41"))
                 holder.btnLayout.visibility = View.GONE
 
             }
@@ -88,8 +92,9 @@ class MyAdapter(
                 //show rejected badge
                 Log.d("STATUS", "REJECTED")
                 holder.status.visibility = View.VISIBLE
+                holder.status.setCustomBackgroundColor(Color.parseColor("#FDDFDF"))
+                holder.status.setTextColor(Color.parseColor("#F75D5F"))
                 holder.status.text = ApprovalConstant.REJECTED.name
-                holder.status.chipBackgroundColor = ColorStateList.valueOf(Color.parseColor("#ff8389"))
                 holder.btnLayout.visibility = View.GONE
             }
 

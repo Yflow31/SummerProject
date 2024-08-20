@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -36,8 +37,8 @@ class ApplyForForm : AppCompatActivity() {
     lateinit var dtimerc: TextView
     lateinit var dtimerc1: TextView
 
-    lateinit var submit_btn: Button
-    lateinit var backtomainbtn: Button
+    lateinit var submit_btn: TextView
+    lateinit var backtomainbtn: ImageButton
     private lateinit var Cal: Calendar
     private lateinit var firestore: FirebaseFirestore
 

@@ -6,9 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/app_bg"
     android:layout_margin="16dp"
     android:padding="16dp"
     tools:context=".ApplyForForm">
+
+    <ImageButton
+        android:id="@+id/backtomainbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/baseline_arrow_back_24"
+        android:backgroundTint="@color/primary"
+        android:text="Go Back To Main Page" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,11 +30,68 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Note: Please fill all the fields." />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Time:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dtimerc1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00:00"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Date:"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/dtimerc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12th Nov 2001"
+            android:textSize="20sp" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Where Do You Live"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your Residential" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Reason For Being Late"
         android:textSize="20sp" />
 
@@ -36,86 +102,48 @@
         android:hint="Write Reason"
         android:inputType="textMultiLine" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="Time:"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/dtimerc1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="12:00:00"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="Date:"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/dtimerc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:text="12th Nov 2001"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Where Do You Live"
+        android:layout_marginTop="16dp"
+        android:text="How Many Times Have You Been Late"
         android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Your Residential"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How Many Times Have You been Late"
-        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/times_late"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:hint="Number of times"/>
+        android:layout_marginBottom="30dp"
+        android:hint="Number of times" />
 
-    <Button
-        android:id="@+id/submitbtn"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:layout_margin="@dimen/material_size_2"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="@dimen/card_corner_radius_half"
+        app:strokeWidth="0dp">
 
-    <Button
-        android:id="@+id/backtomainbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go Back To Main Page" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/material_size_2">
 
+            <TextView
+                android:id="@+id/submitbtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:fontFamily="@font/lexend_light"
+                android:gravity="center"
+                android:padding="@dimen/material_size_4"
+                android:text="Accept"
+                android:textColor="@color/white" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

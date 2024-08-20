@@ -60,6 +60,7 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/progress_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -102,6 +103,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tips_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/material_size_12"
@@ -126,6 +128,7 @@
                                 android:padding="@dimen/material_size_2">
 
                                 <TextView
+                                    android:id="@+id/new_late_request"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:fontFamily="@font/lexend_light"
@@ -175,6 +178,15 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/material_size_12">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:layout_centerHorizontal="true"
+                                android:text="Weekly Report"
+                                android:fontFamily="@font/lexend_regular"
+                                android:layout_alignParentBottom="true" />
+
 
                             <com.somaiya.summer_project.utils.RoundedBarChart
                                 android:id="@+id/barChart"
@@ -209,7 +221,16 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/material_size_4">
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:layout_centerHorizontal="true"
+                                android:text="Status Overview"
+                                android:fontFamily="@font/lexend_regular"
+                                android:layout_alignParentBottom="true" />
 
                             <com.github.mikephil.charting.charts.PieChart
                                 android:id="@+id/barChart_2"
@@ -240,6 +261,7 @@
                     android:layout_margin="@dimen/material_size_12">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/late_request_RecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
