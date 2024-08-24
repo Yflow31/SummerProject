@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="14dp"
+    app:strokeWidth="0dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -23,22 +24,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp">
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="Email: "
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/emailrc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="example@gmail.com"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -50,17 +52,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="Times Late:"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/nooftimeslaterc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="7"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
 
             </LinearLayout>
@@ -72,17 +75,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+
+                    android:fontFamily="@font/lexend_regular"
                     android:text="Time:"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/dtimerc1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="12:00:00"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -93,64 +98,113 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
+
+                    android:fontFamily="@font/lexend_regular"
                     android:text="Date:"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/dtimerc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="12th Nov 2001"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Subject:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/subject_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Mobile App Development"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Faculty:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/faculty_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Mickey Mouse"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Location:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/locationrc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Goregaon"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/material_size_4"
                 android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:text="Location:"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/locationrc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:text="Goregaon"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/lexend_regular"
                     android:text="Reason For Being Late:"
-                    android:textSize="20sp" />
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/reasonrc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+
+                    android:fontFamily="@font/lexend_regular"
+
                     android:inputType="textMultiLine"
-                    android:padding="6dp"
                     android:text="This is a reason for being late. This is a reason for being late. This is a reason for being late. This is a reason for being late. This is a reason for being late. This is a reason for being late."
                     android:textSize="15sp" />
 
@@ -159,42 +213,89 @@
             <LinearLayout
                 android:id="@+id/approval_status_btn_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 android:visibility="gone"
                 android:weightSum="2"
                 tools:visibility="visible">
 
-                <Button
-                    android:id="@+id/approval_status_accept"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/material_size_2"
                     android:layout_weight="1"
-                    android:text="ACCEPT" />
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="@dimen/card_corner_radius_half"
+                    app:strokeWidth="0dp">
 
-                <Button
-                    android:id="@+id/approval_status_reject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="12dp"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/material_size_2">
+
+                        <TextView
+                            android:id="@+id/approval_status_accept"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/lexend_light"
+                            android:gravity="center"
+                            android:padding="@dimen/material_size_4"
+                            android:text="Accept"
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/material_size_2"
                     android:layout_weight="1"
-                    android:text="REJECT" />
+                    app:cardBackgroundColor="@color/primary"
+                    app:cardCornerRadius="@dimen/card_corner_radius_half"
+                    app:strokeWidth="0dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/material_size_2">
+
+                        <TextView
+                            android:id="@+id/approval_status_reject"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/lexend_light"
+                            android:gravity="center"
+                            android:padding="@dimen/material_size_4"
+                            android:text="Reject"
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <com.google.android.material.chip.Chip
+        <com.somaiya.summer_project.utils.BadgeTextView
             android:id="@+id/approval_status_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:text="PENDING"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            android:fontFamily="@font/lexend_light"
+            android:gravity="center"
+            android:minWidth="80dp"
+            android:text="pending"
+            android:textSize="12sp" />
+
 
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
