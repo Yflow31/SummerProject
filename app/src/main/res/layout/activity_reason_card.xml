@@ -24,8 +24,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,40 +114,85 @@
 
             </LinearLayout>
 
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:fontFamily="@font/lexend_regular"
-                        android:text="Location:"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/locationrc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:fontFamily="@font/lexend_regular"
-                        android:text="Goregaon"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Subject:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/subject_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Mobile App Development"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Faculty:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/faculty_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Mickey Mouse"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Location:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/locationrc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Goregaon"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/material_size_4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
                     android:text="Reason For Being Late:"
                     android:textSize="17sp" />

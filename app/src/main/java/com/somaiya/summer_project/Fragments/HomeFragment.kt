@@ -58,7 +58,6 @@ class HomeFragment : Fragment(), ApprovalListener {
                                     .addOnSuccessListener { querySnapshot ->
                                         for (document in querySnapshot.documents) {
 
-
                                             val userEmail = document.getString("email")
                                             val location = document.getString("location")
                                             val reasonForBeingLate =
@@ -69,6 +68,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                 document.getString("approvalStatus")
                                             val date = document.getString("currentdate")
                                             val time = document.getString("currenttime")
+                                            val subject = document.getString("subject")
+                                            val faculty = document.getString("faculty")
+                                            val selectedTimeSlot = document.getString("selectedTimeSlot")
+
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
                                                 val formData = ApplyFormData(
@@ -81,7 +84,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                         ?: ApprovalConstant.PENDING.name,
                                                     role = role,
                                                     currentdate = date ?: "",
-                                                    currenttime = time ?: ""
+                                                    currenttime = time ?: "",
+                                                    subject = subject ?: "",
+                                                    faculty = faculty ?: "",
+                                                    selectedTimeSlot = selectedTimeSlot ?: ""
                                                 )
                                                 applyform.add(formData)
                                             }
@@ -105,6 +111,9 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                 document.getString("approvalStatus")
                                             val date = document.getString("currentdate")
                                             val time = document.getString("currenttime")
+                                            val subject = document.getString("subject")
+                                            val faculty = document.getString("faculty")
+                                            val selectedTimeSlot = document.getString("selectedTimeSlot")
 
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
@@ -118,7 +127,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                         ?: ApprovalConstant.PENDING.name,
                                                     role = role,
                                                     currentdate = date ?: "",
-                                                    currenttime = time ?: ""
+                                                    currenttime = time ?: "",
+                                                    subject = subject ?: "",
+                                                    faculty = faculty ?: "",
+                                                    selectedTimeSlot = selectedTimeSlot ?: ""
                                                 )
                                                 applyform.add(formData)
                                             }

@@ -41,6 +41,9 @@ class MyAdapter(
 
         val dtimerc = itemView.findViewById<TextView>(R.id.dtimerc)
         val dtimerc1 = itemView.findViewById<TextView>(R.id.dtimerc1)
+
+        val subject_name = itemView.findViewById<TextView>(R.id.subject_name)
+        val faculty_name = itemView.findViewById<TextView>(R.id.faculty_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -61,6 +64,8 @@ class MyAdapter(
         holder.location.text = applyformcurrent.location
         holder.dtimerc.text = applyformcurrent.currentdate
         holder.dtimerc1.text = applyformcurrent.currenttime
+        holder.subject_name.text = applyformcurrent.subject
+        holder.faculty_name.text = applyformcurrent.faculty
 
 
         when (applyformcurrent.approvalStatus) {

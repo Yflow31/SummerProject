@@ -172,7 +172,7 @@ class HistoryFragment : Fragment() {
 
                 val barDataSet = BarDataSet(barEntries, "Attendance Counts")
                 barDataSet.color = resources.getColor(R.color.primary)
-                barDataSet.setDrawValues(true)
+                barDataSet.setDrawValues(false)
 
                 val barData = BarData(barDataSet)
                 barChart.data = barData
@@ -329,6 +329,10 @@ class HistoryFragment : Fragment() {
                                                 document.getString("approvalStatus")
                                             val date = document.getString("currentdate")
                                             val time = document.getString("currenttime")
+                                            val subject = document.getString("subject")
+                                            val faculty = document.getString("faculty")
+                                            val selectedTimeSlot = document.getString("selectedTimeSlot")
+
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
                                                 val formData = ApplyFormData(
@@ -341,7 +345,10 @@ class HistoryFragment : Fragment() {
                                                         ?: ApprovalConstant.PENDING.name,
                                                     role = role,
                                                     currentdate = date ?: "",
-                                                    currenttime = time ?: ""
+                                                    currenttime = time ?: "",
+                                                    subject = subject ?: "",
+                                                    faculty = faculty ?: "",
+                                                    selectedTimeSlot = selectedTimeSlot ?: ""
                                                 )
                                                 dataList.add(formData)
                                             }
@@ -365,6 +372,9 @@ class HistoryFragment : Fragment() {
                                                 document.getString("approvalStatus")
                                             val date = document.getString("currentdate")
                                             val time = document.getString("currenttime")
+                                            val subject = document.getString("subject")
+                                            val faculty = document.getString("faculty")
+                                            val selectedTimeSlot = document.getString("selectedTimeSlot")
 
 
                                             if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
@@ -378,7 +388,10 @@ class HistoryFragment : Fragment() {
                                                         ?: ApprovalConstant.PENDING.name,
                                                     role = role,
                                                     currentdate = date ?: "",
-                                                    currenttime = time ?: ""
+                                                    currenttime = time ?: "",
+                                                    subject = subject ?: "",
+                                                    faculty = faculty ?: "",
+                                                    selectedTimeSlot = selectedTimeSlot ?: ""
                                                 )
                                                 dataList.add(formData)
                                             }

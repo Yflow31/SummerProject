@@ -24,11 +24,16 @@
     <color name="primary_success_bg_color">#4D97CE71</color>
     <color name="primary_success_icon_color">#43900C</color>
 
+    <!--> Status colors<-->
+    <color name="accept">#70E017</color>
+    <color name="reject">#FF0000</color>
+    <color name="pending">#D4FAF7</color>
+
 
     <color name="secondary_light_bg">#E6EAF5</color>
     <color name="secondary_light_icon">#E6EAF5</color>
     <color name="secondary_graph_label_color">#77838F</color>
-
+    <color name="secondary_text_color">#DE000000</color>
 
 
     <color name="primary_variant">#FADBDE</color>

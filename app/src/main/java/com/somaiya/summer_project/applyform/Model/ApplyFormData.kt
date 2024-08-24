@@ -13,7 +13,10 @@ data class ApplyFormData(
     var approvalStatus: String = "",
     var role: String = "",
     val currentdate: String = "",
-    val currenttime: String = ""
+    val currenttime: String = "",
+    val subject: String = "",
+    val faculty: String = "",
+    val selectedTimeSlot: String = ""
 ) {
     init {
         approvalStatus = approvalStatus.ifEmpty { ApprovalConstant.PENDING.name }
