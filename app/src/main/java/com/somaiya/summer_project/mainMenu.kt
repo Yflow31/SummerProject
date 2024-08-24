@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -18,6 +19,12 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.somaiya.summer_project.signup.Model.DataSignUp
+import com.somaiya.summer_project.timezone.retrofit.RetrofitClient
+import com.somaiya.summer_project.timezone.retrofit.TimeApiService
+import com.somaiya.summer_project.timezone.timezoneRepository
+import com.somaiya.summer_project.timezone.timezoneViewModel
+import com.somaiya.summer_project.timezone.timezoneViewModelFactory
+import com.somaiya.summer_project.utils.UtiliMethods
 
 class MainMenu : AppCompatActivity() {
 
@@ -26,11 +33,18 @@ class MainMenu : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    //TimeZone
+    private val viewModel: timezoneViewModel by viewModels {
+        timezoneViewModelFactory(timezoneRepository(RetrofitClient.retrofit.create(TimeApiService::class.java)), application)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu2)
+
+        viewModel.startFetchingTimePeriodically("Asia", "Kolkata")
+
         val toolbar = findViewById<Toolbar>(R.id.login_toolbar)
         setSupportActionBar(toolbar)
 
