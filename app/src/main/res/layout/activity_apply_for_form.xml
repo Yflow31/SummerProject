@@ -15,33 +15,35 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            <ImageButton
-                android:layout_centerVertical="true"
-                android:id="@+id/backtomainbtn"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/baseline_arrow_back_24"
-                android:backgroundTint="@color/primary"
-                android:text="Go Back To Main Page" />
+                android:layout_marginTop="32dp">
 
-            <TextView
-                android:layout_alignBaseline="@id/backtomainbtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
-                android:text="REQUEST FORM"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/backtomainbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/baseline_arrow_back_24"
+                    android:backgroundTint="@color/primary"
+                    android:text="Go Back To Main Page" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@id/backtomainbtn"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="REQUEST FORM"
+                    android:textSize="29sp" />
 
             </RelativeLayout>
 
@@ -49,7 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Note: Please fill all the fields." />
+                android:fontFamily="@font/lato_bold"
+                android:text="Note: Please fill all the fields."
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Time of Arrival:"
                     android:textSize="15sp" />
 
@@ -68,6 +73,7 @@
                     android:id="@+id/dtimerc1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
                     android:text="00:00:00"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -75,13 +81,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="0dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Date:"
                     android:textSize="15sp" />
 
@@ -89,6 +96,7 @@
                     android:id="@+id/dtimerc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
                     android:text="9th Dec 2024"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -96,7 +104,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/material_size_2"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -107,6 +115,7 @@
                         android:id="@+id/subject_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_regular"
                         android:hint="Subject Name"
                         android:inputType="text" />
 
@@ -120,23 +129,25 @@
                         android:id="@+id/faculty_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_regular"
                         android:hint="Faculty Name" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <TextView
-                        android:layout_marginTop="@dimen/material_size_8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="Choose Your Lecture Times:"
-                        android:textSize="15sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/material_size_8"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Choose Your Lecture Times:"
+                    android:textSize="15sp" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:orientation="vertical">
 
                     <!-- First row with two RadioButtons -->
@@ -150,6 +161,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/lato_regular"
                             android:text="09:00pm-10:20pm"
                             android:textSize="15sp" />
 
@@ -158,6 +170,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/lato_regular"
                             android:text="10:30pm-11:50pm"
                             android:textSize="15sp" />
 
@@ -174,6 +187,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/lato_regular"
                             android:text="01:00pm-02:20pm"
                             android:textSize="15sp" />
 
@@ -182,6 +196,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:fontFamily="@font/lato_regular"
                             android:text="02:30pm-03:20pm"
                             android:textSize="15sp" />
 
@@ -192,12 +207,14 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
 
                     <EditText
                         android:id="@+id/location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_regular"
                         android:hint="Where Do You Live" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -209,7 +226,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/reason_for_being_late"
                         android:layout_width="match_parent"
-                        android:layout_height="102dp"
+                        android:layout_height="100dp"
+                        android:fontFamily="@font/lato_regular"
                         android:hint="Reason"
                         android:inputType="textMultiLine" />
 
@@ -218,17 +236,20 @@
             </LinearLayout>
 
             <TextView
+                android:fontFamily="@font/lato_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="How Many Times Have You Been Late"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
             <TextView
+                android:fontFamily="@font/lato_regular"
                 android:id="@+id/times_late"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="30dp"
                 android:hint="Number of times"
                 android:textAlignment="center"
@@ -252,7 +273,7 @@
                         android:id="@+id/submitbtn"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:fontFamily="@font/lexend_light"
+                        android:fontFamily="@font/lato_regular"
                         android:gravity="center"
                         android:padding="@dimen/material_size_4"
                         android:text="Send Request"

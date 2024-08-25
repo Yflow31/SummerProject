@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
@@ -27,12 +28,27 @@ class ProfileFragment : Fragment() {
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
+    private lateinit var firstLastNameTextView: TextView
+    private lateinit var rollNoTextView: TextView
+    private lateinit var timesLateCountTextView: TextView
+    private lateinit var rejectTextTextView: TextView
+    private lateinit var acceptCountTextView: TextView
+    private lateinit var rejectCountTextView: TextView
+    private lateinit var roleTextView: TextView
+    private lateinit var courseTextView: TextView
+    private lateinit var phoneTextView: TextView
+    private lateinit var emailTextView: TextView
+    private lateinit var main: LinearLayout
+
+    private lateinit var profile_button: ImageButton
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        val main = view.findViewById<LinearLayout>(R.id.main)
+        main = view.findViewById<LinearLayout>(R.id.main)
         //Show Loader
         showLoadingMain(main)
 
@@ -41,18 +57,21 @@ class ProfileFragment : Fragment() {
 
         val currentUser = auth.currentUser
 
+        firstLastNameTextView = view.findViewById(R.id.first_last_name)
 
+        rollNoTextView = view.findViewById(R.id.roll_no)
 
-        val firstnametxt = view.findViewById<TextView>(R.id.firstnametxt)
-        val lastnametxt = view.findViewById<TextView>(R.id.lastnametxt)
-        val displaynametxt = view.findViewById<TextView>(R.id.displaynametxt)
-        val phonenotxt = view.findViewById<TextView>(R.id.phonenotxt)
-        val coursetxt = view.findViewById<TextView>(R.id.coursetxt)
-        val divtxt = view.findViewById<TextView>(R.id.divtxt)
-        val roletxt = view.findViewById<TextView>(R.id.roletxt)
-        val rollnotxt = view.findViewById<TextView>(R.id.rollnotxt)
-        val backbtn = view.findViewById<TextView>(R.id.backbtn)
-        val profileUpdate = view.findViewById<TextView>(R.id.profileUpdate)
+        timesLateCountTextView = view.findViewById(R.id.times_late_count)
+        rejectTextTextView = view.findViewById(R.id.reject_text)
+        acceptCountTextView = view.findViewById(R.id.accept_count)
+
+        roleTextView = view.findViewById(R.id.role_text)
+        courseTextView = view.findViewById(R.id.course_text)
+        phoneTextView = view.findViewById(R.id.phone_text)
+        emailTextView = view.findViewById(R.id.email_text)
+
+        profile_button = view.findViewById(R.id.profile_button)
+
 
         if (currentUser != null) {
             val userDocRef = db.collection("USERS").document(currentUser.uid)
@@ -61,14 +80,12 @@ class ProfileFragment : Fragment() {
                     if (document != null && document.exists()) {
                         val userDataMap = document.data
                         if (userDataMap != null) {
-                            firstnametxt?.text = userDataMap["firstName"] as String?
-                            lastnametxt?.text = userDataMap["lastName"] as String?
-                            displaynametxt?.text = userDataMap["displayName"] as String?
-                            phonenotxt?.text = userDataMap["phoneNumber"] as String?
-                            coursetxt?.text = userDataMap["course"] as String?
-                            divtxt?.text = userDataMap["div"] as String?
-                            roletxt?.text = userDataMap["role"] as String?
-                            rollnotxt?.text = userDataMap["rollNo"] as String?
+                            firstLastNameTextView.text = (userDataMap["firstName"] as String?) +" "+ (userDataMap["lastName"] as String?)
+                            phoneTextView.text = userDataMap["phoneNumber"] as String?
+                            courseTextView?.text = userDataMap["course"] as String? + "-" + userDataMap["div"] as String?
+                            roleTextView.text = userDataMap["role"] as String?
+                            rollNoTextView.text = userDataMap["rollNo"] as String?
+                            emailTextView.text = userDataMap["email"] as String?
 
                             hideLoadingMain(main)
                         }
@@ -84,13 +101,8 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
         }
 
-        profileUpdate?.setOnClickListener {
+        profile_button.setOnClickListener {
             val intent = Intent(activity, ProfileUpdate::class.java)
-            startActivity(intent)
-        }
-
-        backbtn?.setOnClickListener {
-            val intent = Intent(activity, MainMenu::class.java)
             startActivity(intent)
         }
 

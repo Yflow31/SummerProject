@@ -353,6 +353,18 @@ class HistoryFragment : Fragment() {
                                                 dataList.add(formData)
                                             }
                                         }
+                                        val sortedList = dataList.sortedWith(compareBy<ApplyFormData> {
+                                            when (it.approvalStatus) {
+                                                ApprovalConstant.PENDING.name -> 1
+                                                ApprovalConstant.ACCEPTED.name -> 2
+                                                ApprovalConstant.REJECTED.name -> 3
+                                                else -> 4 // Default for unexpected values
+                                            }
+                                        }.thenBy { it.email }
+                                            .thenBy { it.timesLate.toInt() })
+
+                                        dataList.clear()
+                                        dataList.addAll(sortedList)
                                         adapter.notifyDataSetChanged()
                                     }
                             }
@@ -396,6 +408,18 @@ class HistoryFragment : Fragment() {
                                                 dataList.add(formData)
                                             }
                                         }
+                                        val sortedList = dataList.sortedWith(compareBy<ApplyFormData> {
+                                            when (it.approvalStatus) {
+                                                ApprovalConstant.PENDING.name -> 1
+                                                ApprovalConstant.ACCEPTED.name -> 2
+                                                ApprovalConstant.REJECTED.name -> 3
+                                                else -> 4 // Default for unexpected values
+                                            }
+                                        }.thenBy { it.email }
+                                            .thenBy { it.timesLate.toInt() })
+
+                                        dataList.clear()
+                                        dataList.addAll(sortedList)
                                         adapter.notifyDataSetChanged()
                                     }
                             }

@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -21,7 +24,7 @@ import com.somaiya.summer_project.utils.BadgeTextView
 import com.somaiya.summer_project.utils.ROLE
 
 class MyAdapter(
-    private val applyform: ArrayList<ApplyFormData>,
+    private var applyform: ArrayList<ApplyFormData>,
     private val listener: ApprovalListener
 ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
@@ -44,6 +47,8 @@ class MyAdapter(
 
         val subject_name = itemView.findViewById<TextView>(R.id.subject_name)
         val faculty_name = itemView.findViewById<TextView>(R.id.faculty_name)
+        val delete_from_recycler = itemView.findViewById<ImageButton>(R.id.delete_from_recycler)
+        val lecture_timing = itemView.findViewById<TextView>(R.id.lecture_timing)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -66,6 +71,7 @@ class MyAdapter(
         holder.dtimerc1.text = applyformcurrent.currenttime
         holder.subject_name.text = applyformcurrent.subject
         holder.faculty_name.text = applyformcurrent.faculty
+        holder.lecture_timing.text = applyformcurrent.selectedTimeSlot
 
 
         when (applyformcurrent.approvalStatus) {
@@ -90,7 +96,6 @@ class MyAdapter(
                 holder.status.setCustomBackgroundColor(Color.parseColor("#CFF4E4"))
                 holder.status.setTextColor(Color.parseColor("#00AC41"))
                 holder.btnLayout.visibility = View.GONE
-
             }
 
             ApprovalConstant.REJECTED.name -> {
@@ -114,5 +119,20 @@ class MyAdapter(
             listener.onApprovalResult(false, position, applyformcurrent.reasonId)
         }
 
+
+        if (applyformcurrent.role == ROLE.admin.name) {
+            holder.delete_from_recycler.visibility = View.VISIBLE
+            holder.delete_from_recycler.setOnClickListener {
+                listener.onDeleteResult(position, applyformcurrent.reasonId)
+            }
+        }
+
     }
+
+    fun setFilteredList(filteredList: ArrayList<ApplyFormData>) {
+        applyform = filteredList
+        notifyDataSetChanged()
+    }
+
+
 }

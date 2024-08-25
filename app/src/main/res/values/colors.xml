@@ -25,6 +25,7 @@
     <color name="primary_success_icon_color">#43900C</color>
 
     <!--> Status colors<-->
+    <color name="logout">#c30010</color>
     <color name="accept">#70E017</color>
     <color name="reject">#FF0000</color>
     <color name="pending">#D4FAF7</color>

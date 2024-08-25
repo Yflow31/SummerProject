@@ -15,6 +15,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp">
 
+        <ImageButton
+            android:visibility="gone"
+            android:id="@+id/delete_from_recycler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/baseline_delete_24"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +54,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -53,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
-                    android:text="Times Late:"
+                    android:text="Number of Times Late:"
                     android:textSize="15sp" />
 
                 <TextView
@@ -75,9 +84,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:fontFamily="@font/lexend_regular"
-                    android:text="Time:"
+                    android:text="Arrival Time:"
                     android:textSize="15sp" />
 
                 <TextView
@@ -156,6 +164,29 @@
                     android:layout_marginLeft="3dp"
                     android:fontFamily="@font/lexend_regular"
                     android:text="Mickey Mouse"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="Lecture Timing:"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/lecture_timing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="06:00pm-08:00pm"
                     android:textSize="15sp" />
 
             </LinearLayout>

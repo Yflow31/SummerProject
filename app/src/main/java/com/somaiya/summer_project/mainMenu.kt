@@ -70,7 +70,7 @@ class MainMenu : AppCompatActivity() {
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.user_name)
         val userEmailTextView = headerView.findViewById<TextView>(R.id.user_email)
-        userNameTextView.setText(user?.displayName)
+        userNameTextView.setText(user?.displayName.toString())
         Log.d("displayname", "onCreate: {$user.displayName.toString()}")
         userEmailTextView.setText(user?.email)
         Log.d("displayname", "onCreate: {$user.email")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,16 +14,16 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/counter_card"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="@dimen/card_corner_radius"
                     app:strokeWidth="0dp">
@@ -34,17 +34,27 @@
                         android:layout_margin="@dimen/material_size_4"
                         android:gravity="center">
 
+                        <ImageButton
+                            android:id="@+id/backtomainbtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:background="@drawable/baseline_arrow_back_24"
+                            android:backgroundTint="@color/primary"
+                            android:text="Go Back To Main Page" />
+
                         <RelativeLayout
                             android:id="@+id/profile_part_one"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
                             android:gravity="center">
 
                             <ImageButton
                                 android:id="@+id/profile_image"
-                                android:layout_width="60dp"
-                                android:layout_height="60dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_alignParentStart="true"
                                 android:background="@drawable/profile" />
 
@@ -56,6 +66,15 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/profile_part_one">
 
+                            <ImageButton
+                                android:id="@+id/profile_button"
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="7dp"
+                                android:layout_marginTop="11dp"
+                                android:layout_toEndOf="@id/details_animation_layout"
+                                android:background="@drawable/baseline_edit_24" />
+
                             <LinearLayout
                                 android:id="@+id/details_animation_layout"
                                 android:layout_width="wrap_content"
@@ -65,23 +84,25 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/progress_text"
+                                    android:id="@+id/first_last_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/lexend_semibold"
+                                    android:fontFamily="@font/lato_bold"
                                     android:text="Aniket Sartan"
                                     android:textColor="@color/primary"
                                     android:textSize="30sp"
                                     android:textStyle="bold" />
 
                                 <TextView
+                                    android:id="@+id/roll_no"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/lexend_medium"
-                                    android:text="44"
+                                    android:fontFamily="@font/lato_bold"
+                                    android:text="1703201100"
                                     android:textColor="@color/black"
                                     android:textSize="14sp"
                                     android:textStyle="normal" />
+
 
                             </LinearLayout>
 
@@ -96,6 +117,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/material_size_8"
                                 android:orientation="horizontal"
                                 android:padding="@dimen/material_size_4">
 
@@ -111,17 +133,18 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:fontFamily="@font/lexend_semibold"
+                                        android:fontFamily="@font/lato_bold"
                                         android:text="Times Late"
                                         android:textColor="@color/black"
                                         android:textSize="15sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:id="@+id/times_late_count"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:fontFamily="@font/lexend_medium"
+                                        android:fontFamily="@font/lato_bold"
                                         android:text="6"
                                         android:textColor="@color/black"
                                         android:textSize="14sp"
@@ -148,17 +171,18 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:fontFamily="@font/lexend_semibold"
+                                        android:fontFamily="@font/lato_bold"
                                         android:text="Accepted"
                                         android:textColor="@color/black"
                                         android:textSize="15sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:id="@+id/accept_count"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:fontFamily="@font/lexend_medium"
+                                        android:fontFamily="@font/lato_bold"
                                         android:text="4"
                                         android:textColor="@color/black"
                                         android:textSize="14sp"
@@ -184,17 +208,18 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:fontFamily="@font/lexend_semibold"
+                                        android:fontFamily="@font/lato_bold"
                                         android:text="Rejected"
                                         android:textColor="@color/black"
                                         android:textSize="15sp"
                                         android:textStyle="bold" />
 
                                     <TextView
+                                        android:id="@+id/reject_count"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:fontFamily="@font/lexend_medium"
+                                        android:fontFamily="@font/lato_bold"
                                         android:text="2"
                                         android:textColor="@color/black"
                                         android:textSize="14sp"
@@ -223,12 +248,13 @@
                                     android:background="@drawable/baseline_person_24" />
 
                                 <TextView
+                                    android:id="@+id/role_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lexend_semibold"
+                                    android:fontFamily="@font/lato_regular"
                                     android:text="Student"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/primary_text_color"
                                     android:textSize="15sp"
                                     android:textStyle="bold" />
 
@@ -252,14 +278,15 @@
                                 <ImageButton
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:background="@drawable/baseline_email_24" />
+                                    android:background="@drawable/baseline_school_24" />
 
                                 <TextView
+                                    android:id="@+id/course_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lexend_semibold"
-                                    android:text="example@gmail.com"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="FYMCA"
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:textStyle="bold" />
@@ -286,11 +313,44 @@
                                     android:background="@drawable/baseline_local_phone_24" />
 
                                 <TextView
+                                    android:id="@+id/phone_text"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lexend_semibold"
+                                    android:fontFamily="@font/lato_regular"
                                     android:text="+91 9374823647"
+                                    android:textColor="@color/black"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/profile_part_seven"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/profile_part_six">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/material_size_12">
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/baseline_email_24" />
+
+                                <TextView
+                                    android:id="@+id/email_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/material_size_12"
+                                    android:fontFamily="@font/lato_regular"
+                                    android:text="example@gmail.com"
                                     android:textColor="@color/black"
                                     android:textSize="15sp"
                                     android:textStyle="bold" />
@@ -310,7 +370,8 @@
             </RelativeLayout>
 
         </RelativeLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 
-</FrameLayout>
+</RelativeLayout>
