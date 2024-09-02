@@ -81,7 +81,7 @@ class ProfileFragment : Fragment() {
                         val userDataMap = document.data
                         if (userDataMap != null) {
                             firstLastNameTextView.text = (userDataMap["firstName"] as String?) +" "+ (userDataMap["lastName"] as String?)
-                            phoneTextView.text = userDataMap["phoneNumber"] as String?
+                            phoneTextView.text = "+91 " + userDataMap["phoneNumber"] as String?
                             courseTextView?.text = userDataMap["course"] as String? + "-" + userDataMap["div"] as String?
                             roleTextView.text = userDataMap["role"] as String?
                             rollNoTextView.text = userDataMap["rollNo"] as String?

@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
     private lateinit var editTextTextEmailAddress: EditText
     private lateinit var editTextTextPassword: EditText
-    private lateinit var loginbtn: Button
+    private lateinit var loginbtn: TextView
     private lateinit var signinbtn: TextView
 
     //TimeZone

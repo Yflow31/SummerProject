@@ -36,18 +36,20 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Email: "
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/emailrc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="example@gmail.com"
                     android:textSize="15sp" />
 
@@ -59,18 +61,20 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Number of Times Late:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/nooftimeslaterc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="7"
                     android:textSize="15sp" />
 
@@ -82,18 +86,20 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Arrival Time:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/dtimerc1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="12:00:00"
                     android:textSize="15sp" />
 
@@ -104,19 +110,20 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Date:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/dtimerc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="12th Nov 2001"
                     android:textSize="15sp" />
 
@@ -127,19 +134,20 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Subject:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/subject_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="Mobile App Development"
                     android:textSize="15sp" />
 
@@ -150,19 +158,20 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Faculty:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/faculty_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="Mickey Mouse"
                     android:textSize="15sp" />
 
@@ -173,19 +182,20 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Lecture Timing:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/lecture_timing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="06:00pm-08:00pm"
                     android:textSize="15sp" />
 
@@ -196,19 +206,20 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Location:"
                     android:textSize="15sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/locationrc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_regular"
                     android:text="Goregaon"
                     android:textSize="15sp" />
 
@@ -222,19 +233,19 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lexend_regular"
+                    android:fontFamily="@font/lato_bold"
                     android:text="Reason For Being Late:"
                     android:textSize="17sp" />
 
                 <TextView
+                    android:textColor="@color/secondary_text_color"
                     android:id="@+id/reasonrc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                    android:fontFamily="@font/lexend_regular"
-
+                    android:fontFamily="@font/lato_regular"
                     android:inputType="textMultiLine"
                     android:text="This is a reason for being late. This is a reason for being late. This is a reason for being late. This is a reason for being late. This is a reason for being late. This is a reason for being late."
                     android:textSize="15sp" />

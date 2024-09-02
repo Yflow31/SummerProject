@@ -356,7 +356,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/profile_part_seven"
-                        android:layout_margin="30dp"
+                        android:layout_margin="12dp"
                         app:cardBackgroundColor="@color/logout"
                         app:cardCornerRadius="@dimen/card_corner_radius_half"
                         app:strokeWidth="0dp">
@@ -368,7 +368,7 @@
                             android:padding="@dimen/material_size_2">
 
                             <TextView
-                                android:id="@+id/submitbtn"
+                                android:id="@+id/logout"
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:fontFamily="@font/lato_regular"

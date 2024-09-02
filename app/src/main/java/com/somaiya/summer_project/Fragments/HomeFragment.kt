@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
@@ -20,7 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.somaiya.summer_project.RecyclerReasons.ApprovalListener
 import com.somaiya.summer_project.utils.ApprovalConstant
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Locale
 
 class HomeFragment : Fragment(), ApprovalListener {
 
@@ -36,6 +40,7 @@ class HomeFragment : Fragment(), ApprovalListener {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
 
         recyclerviewreason = view.findViewById(R.id.recyclerviewreason)
         recyclerviewreason.layoutManager = LinearLayoutManager(context)
@@ -108,7 +113,14 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                 else -> 4 // Default for unexpected values
                                             }
                                         }.thenBy { it.email }
-                                            .thenBy { it.timesLate.toInt() })
+                                            .thenByDescending { it.timesLate.toInt() }
+                                            .thenByDescending {
+                                                // Assuming `currentdate` is a String field in your ApplyFormData class
+                                                SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(it.currentdate)
+                                            }.thenByDescending {
+                                                SimpleDateFormat("mm:HH", Locale.getDefault()).parse(it.currenttime)
+                                            }
+                                        )
 
                                         applyform.clear()
                                         applyform.addAll(sortedList)
@@ -164,7 +176,14 @@ class HomeFragment : Fragment(), ApprovalListener {
                                                 else -> 4 // Default for unexpected values
                                             }
                                         }.thenBy { it.email }
-                                            .thenBy { it.timesLate.toInt() })
+                                            .thenByDescending { it.timesLate.toInt() }
+                                            .thenByDescending {
+                                                // Assuming `currentdate` is a String field in your ApplyFormData class
+                                                SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(it.currentdate)
+                                            }.thenByDescending {
+                                                SimpleDateFormat("mm:HH", Locale.getDefault()).parse(it.currenttime)
+                                            }
+                                        )
 
                                         applyform.clear()
                                         applyform.addAll(sortedList)
@@ -203,6 +222,7 @@ class HomeFragment : Fragment(), ApprovalListener {
         }
         return view
     }
+
 
     private fun filterList(query: String) {
 

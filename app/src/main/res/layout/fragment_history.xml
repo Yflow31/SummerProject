@@ -71,6 +71,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/times_late_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -98,11 +99,11 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/lexend_semibold"
                             android:text="Tips"
+                            android:textColor="@color/secondary_text_color"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:textColor="@color/secondary_text_color"
                             android:id="@+id/tips_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -110,6 +111,7 @@
                             android:fontFamily="@font/lexend_regular"
                             android:maxLines="3"
                             android:minLines="3"
+                            android:textColor="@color/secondary_text_color"
                             android:textSize="15sp"
                             tools:text="@tools:sample/lorem/random" />
 
@@ -158,12 +160,60 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <!--graph 2-->
                 <RelativeLayout
+                    android:id="@+id/graph_layout_teacher"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/material_size_4"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/graph_card_teacher"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:strokeWidth="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/lexend_regular"
+                                android:text="Weekly Report"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
+
+
+                            <com.somaiya.summer_project.utils.RoundedBarChart
+                                android:id="@+id/barChart_for_teacher"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp"
+                                app:radius="3dp" />
+
+
+                        </RelativeLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+
+                <!--graph 2-->
+                <RelativeLayout
+                    android:id="@+id/graph_layout_student"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/material_size_4"
+                    android:layout_weight="1"
+                    android:visibility="gone">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/graph_card_1"
@@ -181,11 +231,12 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="10sp"
+                                android:layout_alignParentBottom="true"
                                 android:layout_centerHorizontal="true"
-                                android:text="Weekly Report"
                                 android:fontFamily="@font/lexend_regular"
-                                android:layout_alignParentBottom="true" />
+                                android:text="Weekly Report"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
 
 
                             <com.somaiya.summer_project.utils.RoundedBarChart
@@ -203,12 +254,14 @@
                 </RelativeLayout>
 
 
-                <!--graph 2-->
+                <!--Student graph 2-->
                 <RelativeLayout
+                    android:id="@+id/piechart_for_student"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/material_size_4"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:visibility="gone">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/graph_card_2"
@@ -226,14 +279,58 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="10sp"
+                                android:layout_alignParentBottom="true"
                                 android:layout_centerHorizontal="true"
-                                android:text="Status Overview"
                                 android:fontFamily="@font/lexend_regular"
-                                android:layout_alignParentBottom="true" />
+                                android:text="Status Overview"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
 
                             <com.github.mikephil.charting.charts.PieChart
                                 android:id="@+id/barChart_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp" />
+
+                        </RelativeLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/piechart_for_teacher"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/material_size_4"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/graph_card_teacher_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:strokeWidth="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/lexend_regular"
+                                android:text="Status Overview"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
+
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/barChart_for_teacher_2"
                                 android:layout_width="match_parent"
                                 android:layout_height="400dp" />
 
@@ -265,9 +362,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:itemCount="12"
-                        tools:listitem="@layout/item_dashboard_late_request"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        tools:listitem="@layout/item_dashboard_late_request" />
 
 
                 </RelativeLayout>
