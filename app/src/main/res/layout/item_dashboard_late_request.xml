@@ -5,7 +5,6 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:textColor="@color/secondary_text_color"
         android:id="@+id/item_request_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,34 +12,35 @@
         android:layout_alignParentTop="true"
         android:fontFamily="@font/lexend_semibold"
         android:text="Request #1"
+        android:textColor="@color/secondary_text_color"
         android:textSize="18sp" />
 
     <TextView
-        android:textColor="@color/secondary_text_color"
         android:id="@+id/item_request_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/item_request_id"
         android:layout_alignParentStart="true"
-        android:fontFamily="@font/lexend_regular"
         android:layout_marginVertical="@dimen/material_size_4"
+        android:fontFamily="@font/lexend_regular"
         android:maxLines="1"
         android:text=""
+        android:textColor="@color/secondary_text_color"
         tools:text="@tools:sample/lorem/random" />
 
 
     <com.somaiya.summer_project.utils.BadgeTextView
         android:id="@+id/item_request_badge"
         android:layout_width="wrap_content"
-        android:minWidth="70dp"
-        android:gravity="center"
-        android:fontFamily="@font/lexend_regular"
         android:layout_height="wrap_content"
-        android:textSize="10sp"
         android:layout_alignBaseline="@id/item_request_id"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:text="pending" />
+        android:fontFamily="@font/lexend_regular"
+        android:gravity="center"
+        android:minWidth="70dp"
+        android:text="pending"
+        android:textSize="10sp" />
 
 
 </RelativeLayout>

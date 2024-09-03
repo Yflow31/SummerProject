@@ -358,6 +358,7 @@
                     android:layout_margin="@dimen/material_size_12">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
                         android:id="@+id/late_request_RecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -365,6 +366,25 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         tools:itemCount="12"
                         tools:listitem="@layout/item_dashboard_late_request" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/leaderboard_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Leaderboard"
+                        android:layout_centerHorizontal="true" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="visible"
+                        android:id="@+id/leaderboard_RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/leaderboard_txt"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="12"
+                        tools:listitem="@layout/item_leaderboard_display" />
 
 
                 </RelativeLayout>

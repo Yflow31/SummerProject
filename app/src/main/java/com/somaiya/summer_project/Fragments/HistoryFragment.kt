@@ -29,6 +29,7 @@ import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.ApplyForForm
 import com.somaiya.summer_project.MainActivity
+import com.somaiya.summer_project.MiniRecycler.LeaderboardRecyclerAdapter
 import com.somaiya.summer_project.MiniRecycler.MiniRecyclerAdapter
 import com.somaiya.summer_project.MiniRecycler.MiniRecyclerData
 import com.somaiya.summer_project.R
@@ -47,23 +48,23 @@ import kotlin.math.min
 class HistoryFragment : Fragment() {
 
     private lateinit var db: FirebaseFirestore
-    private lateinit var db_timesLateDisplay: TextView
     private val user = Firebase.auth.currentUser
-    private lateinit var cd_profile: androidx.cardview.widget.CardView
-    private lateinit var cd_dashboard: androidx.cardview.widget.CardView
-    private lateinit var cd_home: androidx.cardview.widget.CardView
-    private lateinit var cd_logout: androidx.cardview.widget.CardView
+
 
     private lateinit var progress_text: TextView
     private lateinit var times_late_text:TextView
     private lateinit var tips_text: TextView
     private lateinit var new_late_request: TextView
+    private lateinit var leaderboard_txt: TextView
+
 
     private lateinit var miniRecycler: RecyclerView
     private lateinit var adapter: MiniRecyclerAdapter
-    private lateinit var dataList: MutableList<ApplyFormData>
+    private lateinit var leaderboardAdapter: LeaderboardRecyclerAdapter
+    private lateinit var leaderboard_RecyclerView: RecyclerView
 
-    private lateinit var navController: NavController
+    private lateinit var dataList: MutableList<ApplyFormData>
+    private lateinit var dataList1: MutableList<ApplyFormData>
 
     private lateinit var graph_layout_student: RelativeLayout
     private lateinit var piechart_for_student: RelativeLayout
@@ -79,15 +80,22 @@ class HistoryFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
 
         miniRecycler = view.findViewById(R.id.late_request_RecyclerView)
+        leaderboard_RecyclerView = view.findViewById(R.id.leaderboard_RecyclerView)
+
         dataList = mutableListOf()
+        dataList1 = mutableListOf()
         adapter = MiniRecyclerAdapter(dataList)
+        leaderboardAdapter = LeaderboardRecyclerAdapter(dataList1)
+
         miniRecycler.adapter = adapter
+        leaderboard_RecyclerView.adapter = leaderboardAdapter
 
         //TextView
         progress_text = view.findViewById(R.id.progress_text)
         tips_text = view.findViewById(R.id.tips_text)
         new_late_request = view.findViewById(R.id.new_late_request)
         times_late_text = view.findViewById(R.id.times_late_text)
+        leaderboard_txt = view.findViewById(R.id.leaderboard_txt)
 
         //Layouts
         graph_layout_student = view.findViewById(R.id.graph_layout_student)
@@ -182,11 +190,14 @@ class HistoryFragment : Fragment() {
                                 "admin" -> {
                                     graph_layout_teacher.visibility = View.VISIBLE
                                     piechart_for_teacher.visibility = View.VISIBLE
+                                    leaderboard_RecyclerView.visibility = View.VISIBLE
+                                    leaderboard_txt.visibility = View.VISIBLE
                                 }
 
                                 "student" -> {
                                     graph_layout_student.visibility = View.VISIBLE
                                     piechart_for_student.visibility = View.VISIBLE
+                                    miniRecycler.visibility = View.VISIBLE
                                 }
                             }
                         }
@@ -581,8 +592,31 @@ class HistoryFragment : Fragment() {
                                                         selectedTimeSlot = selectedTimeSlot ?: ""
                                                     )
                                                     dataList.add(formData)
+                                                    dataList1.add(formData)
                                                 }
                                             }
+                                            val leaderboardMap = mutableMapOf<String, ApplyFormData>()
+
+                                            for (item in dataList1) {
+                                                val email = item.email
+                                                val currentTimesLate = item.timesLate.toInt()
+
+                                                val existingItem = leaderboardMap[email]
+
+                                                // If there's no existing item or the current one has a higher timesLate, update the map
+                                                if (existingItem == null || currentTimesLate > existingItem.timesLate.toInt()) {
+                                                    leaderboardMap[email] = item
+                                                }
+                                            }
+
+                                            val leaderboardList = leaderboardMap.values.toList()
+
+                                            val sortedLeaderboardList = leaderboardList.sortedByDescending { it.timesLate.toInt() }
+
+                                            dataList1.clear()
+                                            dataList1.addAll(sortedLeaderboardList)
+                                            leaderboardAdapter.notifyDataSetChanged()
+
                                             val sortedList =
                                                 dataList.sortedWith(compareBy<ApplyFormData> {
                                                     when (it.approvalStatus) {
@@ -653,6 +687,30 @@ class HistoryFragment : Fragment() {
                                                     dataList.add(formData)
                                                 }
                                             }
+
+                                            val leaderboardMap = mutableMapOf<String, ApplyFormData>()
+
+                                            for (item in dataList1) {
+                                                val email = item.email
+                                                val currentTimesLate = item.timesLate.toInt()
+
+                                                val existingItem = leaderboardMap[email]
+
+                                                // If there's no existing item or the current one has a higher timesLate, update the map
+                                                if (existingItem == null || currentTimesLate > existingItem.timesLate.toInt()) {
+                                                    leaderboardMap[email] = item
+                                                }
+                                            }
+
+                                            val leaderboardList = leaderboardMap.values.toList()
+
+                                            val sortedLeaderboardList = leaderboardList.sortedByDescending { it.timesLate.toInt() }
+
+                                            dataList1.clear()
+                                            dataList1.addAll(sortedLeaderboardList)
+                                            leaderboardAdapter.notifyDataSetChanged()
+
+
                                             val sortedList =
                                                 dataList.sortedWith(compareBy<ApplyFormData> {
                                                     when (it.approvalStatus) {
