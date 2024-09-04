@@ -209,7 +209,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/lato_regular"
-                            android:text="02:30pm-03:20pm"
+                            android:text="02:30pm-03:50pm"
                             android:textSize="15sp" />
 
                     </LinearLayout>

@@ -41,6 +41,7 @@ import com.somaiya.summer_project.utils.PercentageValueFormatter
 import com.somaiya.summer_project.utils.ROLE
 import com.somaiya.summer_project.utils.TipConstant
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import kotlin.math.min
 
@@ -52,10 +53,10 @@ class HistoryFragment : Fragment() {
 
 
     private lateinit var progress_text: TextView
-    private lateinit var times_late_text:TextView
     private lateinit var tips_text: TextView
     private lateinit var new_late_request: TextView
     private lateinit var leaderboard_txt: TextView
+    private lateinit var times_late_text: TextView
 
 
     private lateinit var miniRecycler: RecyclerView
@@ -94,8 +95,8 @@ class HistoryFragment : Fragment() {
         progress_text = view.findViewById(R.id.progress_text)
         tips_text = view.findViewById(R.id.tips_text)
         new_late_request = view.findViewById(R.id.new_late_request)
-        times_late_text = view.findViewById(R.id.times_late_text)
         leaderboard_txt = view.findViewById(R.id.leaderboard_txt)
+        times_late_text = view.findViewById(R.id.times_late_text)
 
         //Layouts
         graph_layout_student = view.findViewById(R.id.graph_layout_student)
@@ -111,6 +112,8 @@ class HistoryFragment : Fragment() {
             activity?.finish()
         }
 
+        val todayDate = getTodayDate()
+        Log.d("todayDate", "onCreateView: ${todayDate.toString()} ")
         //Data to show progress in Chart for students
         if (user != null) {
             val user_ref = db.collection("USERS").document(user.uid)
@@ -119,10 +122,18 @@ class HistoryFragment : Fragment() {
                 if (role != null) {
                     when (role) {
                         "admin" -> {
-                            db.collection("ReasonsForAdmin").get().addOnSuccessListener {
-                                progress_text.text = it.size().toString()
-                                times_late_text.text = "Students late"
-                            }
+                            db.collection("ReasonsForAdmin")
+                                .whereEqualTo("currentdate", todayDate)
+                                .get()
+                                .addOnSuccessListener { result ->
+                                    val count = result.size()
+                                    progress_text.text = "${(count)}"
+                                    times_late_text.text = "Late Entries Today"
+                                }
+                                .addOnFailureListener { exception ->
+                                    // Handle any errors
+                                    Log.e("FirebaseError", "Error getting documents: ", exception)
+                                }
                         }
 
                         "student" -> {
@@ -135,17 +146,7 @@ class HistoryFragment : Fragment() {
                 }
             }
         }
-//            db.collection("USERS").document(user?.uid ?: "")
-//                .collection("reasons")
-//                .get().addOnCompleteListener { task ->
-//                    if (task.isSuccessful) {
-//                        val count = task.result.size()
-//                        progress_text.text = count.toString() + "/7"
-//                        Log.d("db_timesLateDisplay", "onCreate:" + progress_text.text)
-//                    } else {
-//                        Log.w("FirestoreCount", "Error getting documents.", task.exception)
-//                    }
-//                }
+
 
             // Fetching tips for users
 
@@ -761,4 +762,9 @@ class HistoryFragment : Fragment() {
             return view
         }
 
+    private fun getTodayDate(): String {
+        val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()) // Use the same date format as in Firebase
+        return sdf.format(Date())
     }
+
+}

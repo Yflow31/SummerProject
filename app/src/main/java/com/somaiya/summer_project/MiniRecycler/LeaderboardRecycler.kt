@@ -31,8 +31,8 @@ class LeaderboardRecyclerAdapter(
     override fun onBindViewHolder(holder: LeaderboardViewHolder, position: Int) {
         val currentItem = applyFormDataList[position]
         holder.emailTextView.text = currentItem.email
-        holder.approval.text = currentItem.timesLate
-        holder.item_request_id.text = "${position + 1})"
+        holder.approval.text = "${currentItem.timesLate.toInt() + 1}"
+        holder.item_request_id.text = "${position + 1}"
     }
 
     // Return the size of your dataset

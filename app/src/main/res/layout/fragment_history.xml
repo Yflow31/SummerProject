@@ -40,8 +40,8 @@
 
                         <com.github.rezaiyan.levelprogressbar.LevelProgressBar
                             android:id="@+id/progress_bar"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
                             android:layout_centerInParent="true"
                             android:layout_margin="4dp"
                             app:spb_background_color="@color/primary_light_bg"
@@ -64,7 +64,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:fontFamily="@font/lexend_semibold"
+                                android:fontFamily="@font/lato_bold"
                                 android:text="2/7"
                                 android:textColor="@color/primary"
                                 android:textSize="36sp"
@@ -75,7 +75,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:fontFamily="@font/lexend_medium"
+                                android:fontFamily="@font/lato_bold"
                                 android:text="times late!"
                                 android:textColor="@color/primary"
                                 android:textSize="14sp"
@@ -90,14 +90,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="@dimen/material_size_12"
                         android:layout_toEndOf="@+id/layout_progress_bar"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/lexend_semibold"
+                            android:fontFamily="@font/lato_bold"
                             android:text="Tips"
                             android:textColor="@color/secondary_text_color"
                             android:textSize="20sp"
@@ -108,7 +108,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/material_size_12"
-                            android:fontFamily="@font/lexend_regular"
+                            android:fontFamily="@font/lato_regular"
                             android:maxLines="3"
                             android:minLines="3"
                             android:textColor="@color/secondary_text_color"
@@ -127,16 +127,17 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:padding="@dimen/material_size_2">
+                                android:padding="6dp">
 
                                 <TextView
                                     android:id="@+id/new_late_request"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:fontFamily="@font/lexend_light"
+                                    android:fontFamily="@font/lato_regular"
                                     android:gravity="center"
+                                    android:textSize="@dimen/material_size_12"
                                     android:padding="@dimen/material_size_4"
-                                    android:text="New Late Request!"
+                                    android:text="Late Request"
                                     android:textColor="@color/white" />
 
                             </RelativeLayout>
@@ -342,7 +343,7 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
+            <RelativeLayout
                 android:id="@+id/late_request_card"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -352,45 +353,42 @@
                 app:cardCornerRadius="@dimen/card_corner_radius"
                 app:strokeWidth="0dp">
 
-                <RelativeLayout
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/late_request_RecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/material_size_12">
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="12"
+                    tools:listitem="@layout/item_dashboard_late_request" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/late_request_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="12"
-                        tools:listitem="@layout/item_dashboard_late_request" />
+                <TextView
+                    android:id="@+id/leaderboard_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_bold"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20sp"
+                    android:text="Leaderboard"
+                    android:visibility="gone" />
 
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/leaderboard_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Leaderboard"
-                        android:layout_centerHorizontal="true" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="visible"
-                        android:id="@+id/leaderboard_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/leaderboard_txt"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="12"
-                        tools:listitem="@layout/item_leaderboard_display" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/leaderboard_RecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/leaderboard_txt"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="12"
+                    tools:listitem="@layout/item_leaderboard_display" />
 
 
-                </RelativeLayout>
+            </RelativeLayout>
 
-
-            </com.google.android.material.card.MaterialCardView>
 
         </RelativeLayout>
 

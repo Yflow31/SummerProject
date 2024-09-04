@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="@dimen/material_size_4"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/material_size_8"
+    app:cardCornerRadius="5dp">
 
-    <TextView
-        android:id="@+id/item_request_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:fontFamily="@font/lexend_semibold"
-        android:text="1)"
-        android:textColor="@color/secondary_text_color"
-        android:textSize="18sp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="11dp">
 
-    <TextView
-        android:id="@+id/item_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/material_size_4"
-        android:layout_marginStart="@dimen/material_size_4"
-        android:layout_toEndOf="@id/item_request_id"
-        android:fontFamily="@font/lexend_regular"
-        android:maxLines="1"
-        android:text="example@somaiya.edu"
-        android:textColor="@color/secondary_text_color" />
+        <TextView
+            android:id="@+id/item_request_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="6dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="1"
+            android:textColor="@color/secondary_text_color"
+            android:textSize="20sp" />
 
-
-    <com.somaiya.summer_project.utils.BadgeTextView
-        android:id="@+id/item_request_badge"
-        android:layout_width="wrap_content"
-        android:minWidth="20dp"
-        android:gravity="center"
-        android:fontFamily="@font/lexend_regular"
-        android:layout_height="wrap_content"
-        android:textSize="10sp"
-        android:layout_alignBaseline="@id/item_request_id"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:text="0" />
+        <TextView
+            android:id="@+id/item_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/material_size_4"
+            android:layout_marginStart="12dp"
+            android:layout_toEndOf="@id/item_request_id"
+            android:fontFamily="@font/lato_regular"
+            android:maxLines="1"
+            android:text="example@somaiya.edu"
+            android:textColor="@color/secondary_text_color" />
 
 
-</RelativeLayout>
+        <com.somaiya.summer_project.utils.BadgeTextView
+            android:id="@+id/item_request_badge"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/lexend_regular"
+            android:gravity="center"
+            android:minWidth="20dp"
+            android:text="0"
+            android:textSize="10sp" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

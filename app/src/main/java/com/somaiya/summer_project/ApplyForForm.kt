@@ -170,7 +170,7 @@ class ApplyForForm : AppCompatActivity() {
 
         radio4.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
-                selectedOption = "02:30pm-03:20pm"
+                selectedOption = "02:30pm-03:50pm"
                 resetRadioButtons(4)
             }
         }

@@ -21,11 +21,13 @@ class MiniRecyclerAdapter(private val dataList: List<ApplyFormData>) :
         val tvApprovalStatus: BadgeTextView = itemView.findViewById(R.id.item_request_badge)
         val tvDate: TextView = itemView.findViewById(R.id.item_request_date)
         val tvRequestId: TextView = itemView.findViewById(R.id.item_request_id)
+        val tvTime: TextView = itemView.findViewById(R.id.item_request_time)
 
         fun bind(data: ApplyFormData, position: Int) {
-            tvRequestId.text = "Request #${position + 1}"
+            tvRequestId.text = "Request ${position + 1}"
             tvApprovalStatus.text = data.approvalStatus
-            tvDate.text = "${data.currentdate} ${data.currenttime}"
+            tvDate.text = data.currentdate
+            tvTime.text = data.currenttime
         }
     }
 

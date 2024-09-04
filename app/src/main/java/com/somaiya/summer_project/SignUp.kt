@@ -24,7 +24,6 @@ class SignUp : AppCompatActivity() {
     private lateinit var editTextRole: EditText
     private lateinit var editTextFirstName: EditText
     private lateinit var editTextLastName: EditText
-    private lateinit var editTextDisplayName: EditText
     private lateinit var editTextPhoneNumber: EditText
     private lateinit var editTextEmailAddress: EditText
     private lateinit var editTextCourse: EditText

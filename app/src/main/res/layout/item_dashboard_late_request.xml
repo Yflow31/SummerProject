@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="5dp"
+    android:layout_marginTop="8dp"
     android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/item_request_id"
@@ -10,23 +19,39 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:fontFamily="@font/lexend_semibold"
+        android:fontFamily="@font/lato_bold"
         android:text="Request #1"
         android:textColor="@color/secondary_text_color"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/item_request_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/item_request_id"
-        android:layout_alignParentStart="true"
-        android:layout_marginVertical="@dimen/material_size_4"
-        android:fontFamily="@font/lexend_regular"
-        android:maxLines="1"
-        android:text=""
-        android:textColor="@color/secondary_text_color"
-        tools:text="@tools:sample/lorem/random" />
+        <TextView
+            android:id="@+id/item_request_date"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_request_id"
+            android:layout_alignParentStart="true"
+            android:textSize="12sp"
+            android:layout_marginVertical="@dimen/material_size_4"
+            android:fontFamily="@font/lato_regular"
+            android:maxLines="1"
+            android:text="01-01-2001"
+            android:textColor="@color/secondary_text_color" />
+
+        <TextView
+            android:id="@+id/item_request_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_request_badge"
+            android:minWidth="70dp"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:layout_marginVertical="@dimen/material_size_4"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/lato_regular"
+            android:maxLines="1"
+            android:text="09:00"
+            android:textColor="@color/secondary_text_color"
+            />
 
 
     <com.somaiya.summer_project.utils.BadgeTextView
@@ -36,11 +61,13 @@
         android:layout_alignBaseline="@id/item_request_id"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:fontFamily="@font/lexend_regular"
+        android:fontFamily="@font/lato_regular"
         android:gravity="center"
         android:minWidth="70dp"
         android:text="pending"
         android:textSize="10sp" />
 
+    </RelativeLayout>
 
-</RelativeLayout>
+
+</androidx.cardview.widget.CardView>

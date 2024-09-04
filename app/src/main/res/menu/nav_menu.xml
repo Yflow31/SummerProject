@@ -7,14 +7,15 @@
 
         <item
             android:id="@+id/historyFragment"
-            android:icon="@drawable/baseline_assignment_late_24"
-            android:title="Late Request" />
+
+            android:icon="@drawable/baseline_dashboard_24"
+            android:title="Dash Board" />
 
 
         <item
             android:id="@+id/homeFragment"
-            android:icon="@drawable/baseline_dashboard_24"
-            android:title="Dash Board" />
+            android:icon="@drawable/baseline_assignment_late_24"
+            android:title="Late Request" />
 
         <item
             android:id="@+id/profileFragment"

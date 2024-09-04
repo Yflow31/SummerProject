@@ -9,367 +9,405 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/material_size_12">
+        android:layout_height="match_parent">
+
 
         <RelativeLayout
+            android:id="@+id/main_counter_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
 
-            <RelativeLayout
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/counter_card"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:strokeWidth="0dp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/counter_card"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:strokeWidth="0dp">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_size_4">
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/material_size_4"
-                        android:gravity="center">
+                        android:id="@+id/layout_progress_bar"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true">
 
-                        <ImageButton
-                            android:id="@+id/backtomainbtn"
+                        <com.github.rezaiyan.levelprogressbar.LevelProgressBar
+                            android:id="@+id/progress_bar"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="4dp"
+                            app:spb_background_color="@color/primary_light_bg"
+                            app:spb_is_enable="true"
+                            app:spb_is_step_progress="false"
+                            app:spb_level="level6"
+                            app:spb_stroke_with="50"
+                            app:spb_text_level_color="#00000000"
+                            app:spb_unprogress_color="#E6E6E6" />
+
+                        <LinearLayout
+                            android:id="@+id/details_animation_layout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="32dp"
-                            android:background="@drawable/baseline_arrow_back_24"
-                            android:backgroundTint="@color/primary"
-                            android:text="Go Back To Main Page" />
+                            android:layout_centerInParent="true"
+                            android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:id="@+id/profile_part_one"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="30dp"
-                            android:gravity="center">
-
-                            <ImageButton
-                                android:id="@+id/profile_image"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_alignParentStart="true"
-                                android:background="@drawable/profile" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/profile_part_two"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/profile_part_one">
-
-                            <ImageButton
-                                android:id="@+id/profile_button"
-                                android:layout_width="22dp"
-                                android:layout_height="22dp"
-                                android:layout_marginStart="7dp"
-                                android:layout_marginTop="11dp"
-                                android:layout_toEndOf="@id/details_animation_layout"
-                                android:background="@drawable/baseline_edit_24" />
-
-                            <LinearLayout
-                                android:id="@+id/details_animation_layout"
+                            <TextView
+                                android:id="@+id/progress_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/lato_bold"
+                                android:text="2/7"
+                                android:textColor="@color/primary"
+                                android:textSize="36sp"
+                                android:textStyle="bold" />
 
-                                <TextView
-                                    android:id="@+id/first_last_name"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/lato_bold"
-                                    android:text="Aniket Sartan"
-                                    android:textColor="@color/primary"
-                                    android:textSize="30sp"
-                                    android:textStyle="bold" />
+                            <TextView
 
-                                <TextView
-                                    android:id="@+id/roll_no"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/lato_bold"
-                                    android:text="1703201100"
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp"
-                                    android:textStyle="normal" />
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@id/profile_part_three"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/profile_part_two">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/material_size_8"
-                                android:orientation="horizontal"
-                                android:padding="@dimen/material_size_4">
-
-                                <!-- Times Late Layout -->
-                                <LinearLayout
-                                    android:id="@+id/times_late_display"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="Times Late"
-                                        android:textColor="@color/black"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:id="@+id/times_late_count"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="6"
-                                        android:textColor="@color/black"
-                                        android:textSize="14sp"
-                                        android:textStyle="normal" />
-
-                                </LinearLayout>
-
-                                <!-- Divider Line -->
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/primary" />
-
-                                <!-- Accept Layout -->
-                                <LinearLayout
-                                    android:id="@+id/reject_layout"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:id="@+id/reject_text"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="Accepted"
-                                        android:textColor="@color/black"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:id="@+id/accept_count"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="4"
-                                        android:textColor="@color/black"
-                                        android:textSize="14sp"
-                                        android:textStyle="normal" />
-
-                                </LinearLayout>
-
-                                <!-- Divider Line -->
-                                <View
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/primary" />
-
-                                <!-- Reject Layout -->
-                                <LinearLayout
-                                    android:id="@+id/accept_display"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="Rejected"
-                                        android:textColor="@color/black"
-                                        android:textSize="15sp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:id="@+id/reject_count"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/lato_bold"
-                                        android:text="2"
-                                        android:textColor="@color/black"
-                                        android:textSize="14sp"
-                                        android:textStyle="normal" />
-
-                                </LinearLayout>
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/profile_part_four"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/profile_part_three">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/material_size_12">
-
-                                <ImageButton
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/baseline_person_24" />
-
-                                <TextView
-                                    android:id="@+id/role_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lato_regular"
-                                    android:text="Student"
-                                    android:textColor="@color/primary_text_color"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/lato_bold"
+                                android:text="Late Entries Today"
+                                android:textAlignment="center"
+                                android:textColor="@color/primary"
+                                android:textSize="11sp"
+                                android:textStyle="normal" />
 
 
-                            </LinearLayout>
-
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/profile_part_five"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/profile_part_four">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/material_size_12">
-
-                                <ImageButton
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/baseline_school_24" />
-
-                                <TextView
-                                    android:id="@+id/course_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lato_regular"
-                                    android:text="FYMCA"
-                                    android:textColor="@color/black"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/profile_part_six"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/profile_part_five">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/material_size_12">
-
-                                <ImageButton
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/baseline_local_phone_24" />
-
-                                <TextView
-                                    android:id="@+id/phone_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lato_regular"
-                                    android:text="+91 9374823647"
-                                    android:textColor="@color/black"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/profile_part_seven"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/profile_part_six">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="@dimen/material_size_12">
-
-                                <ImageButton
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/baseline_email_24" />
-
-                                <TextView
-                                    android:id="@+id/email_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/material_size_12"
-                                    android:fontFamily="@font/lato_regular"
-                                    android:text="example@gmail.com"
-                                    android:textColor="@color/black"
-                                    android:textSize="15sp"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </RelativeLayout>
-
-
+                        </LinearLayout>
                     </RelativeLayout>
 
 
-                </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:layout_toEndOf="@+id/layout_progress_bar"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/lexend_semibold"
+                            android:text="Tips"
+                            android:textColor="@color/secondary_text_color"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tips_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/material_size_12"
+                            android:fontFamily="@font/lexend_regular"
+                            android:maxLines="3"
+                            android:minLines="3"
+                            android:textColor="@color/secondary_text_color"
+                            android:textSize="15sp"
+                            tools:text="@tools:sample/lorem/random" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_2"
+                            app:cardBackgroundColor="@color/primary"
+                            app:cardCornerRadius="@dimen/card_corner_radius_half"
+                            app:strokeWidth="0dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:padding="@dimen/material_size_2">
+
+                                <TextView
+                                    android:id="@+id/new_late_request"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:fontFamily="@font/lexend_light"
+                                    android:gravity="center"
+                                    android:padding="@dimen/material_size_4"
+                                    android:text="New Late Request!"
+                                    android:textColor="@color/white" />
+
+                            </RelativeLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
 
 
-            </RelativeLayout>
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:id="@+id/graph_layout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/counter_card"
+                android:layout_marginTop="@dimen/material_size_8"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/graph_layout_teacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/material_size_4"
+                    android:visibility="visible">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/graph_card_teacher"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:strokeWidth="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/lexend_regular"
+                                android:text="Weekly Report"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
+
+
+                            <com.somaiya.summer_project.utils.RoundedBarChart
+                                android:id="@+id/barChart_for_teacher"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp"
+                                app:radius="3dp" />
+
+
+                        </RelativeLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+
+                <!--graph 2-->
+                <RelativeLayout
+                    android:id="@+id/graph_layout_student"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/material_size_4"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/graph_card_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:strokeWidth="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/lexend_regular"
+                                android:text="Weekly Report"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
+
+
+                            <com.somaiya.summer_project.utils.RoundedBarChart
+                                android:id="@+id/barChart"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp"
+                                app:radius="3dp" />
+
+
+                        </RelativeLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+
+
+                <!--Student graph 2-->
+                <RelativeLayout
+                    android:id="@+id/piechart_for_student"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/material_size_4"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/graph_card_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:strokeWidth="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/lexend_regular"
+                                android:text="Status Overview"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
+
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/barChart_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp" />
+
+                        </RelativeLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/graph_layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/graph_layout"
+                android:layout_marginTop="@dimen/material_size_8"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/piechart_for_teacher"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/material_size_4"
+                    android:layout_weight="1"
+                    android:visibility="visible">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/graph_card_teacher_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/card_corner_radius"
+                        app:strokeWidth="0dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/material_size_12">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:fontFamily="@font/lexend_regular"
+                                android:text="Status Overview"
+                                android:textColor="@color/secondary_text_color"
+                                android:textSize="10sp" />
+
+                            <com.github.mikephil.charting.charts.PieChart
+                                android:id="@+id/barChart_for_teacher_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="400dp" />
+
+                        </RelativeLayout>
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/late_request_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/graph_layout_2"
+                android:layout_marginTop="@dimen/material_size_8"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:strokeWidth="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/material_size_12">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/late_request_RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="12"
+                        tools:listitem="@layout/item_dashboard_late_request" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/leaderboard_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Leaderboard"
+                        android:layout_centerHorizontal="true" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="visible"
+                        android:id="@+id/leaderboard_RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/leaderboard_txt"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="12"
+                        tools:listitem="@layout/item_leaderboard_display" />
+
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
 
         </RelativeLayout>
+
 
     </androidx.core.widget.NestedScrollView>
 
