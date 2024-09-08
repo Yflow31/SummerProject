@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,39 +7,62 @@
     android:background="@color/app_bg"
     tools:context=".ProfileUpdate">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="@dimen/material_size_4">
+
+    <ImageButton
+        android:id="@+id/backbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/baseline_arrow_back_24"
+        android:backgroundTint="@color/primary"
+        android:text="Go Back To Main Page" />
+
     <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <TextView
+            android:fontFamily="@font/lato_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Profile Update"
+            android:layout_marginBottom="10dp"
+            android:text="EDIT PROFILE"
             android:textSize="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="First Name: "
-                android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/firstnametxt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Eg: Vijay"
-                android:textSize="20sp" />
+                android:layout_height="60dp"
+                android:hint="First Name"> <!-- Add a hint if needed -->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/firstnametxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="Vijay"
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -48,18 +71,20 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Last Name: "
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/lastnametxt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Eg: Sharma"
-                android:textSize="20sp" />
+                android:layout_height="60dp"
+                android:hint="Last Name"> <!-- Add a hint if needed -->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lastnametxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Sharma"
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -68,18 +93,20 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Display Name: "
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/displaynametxt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Eg: Betanoobie"
-                android:textSize="20sp" />
+                android:layout_height="60dp"
+                android:hint="Course Name"> <!-- Add a hint if needed -->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/coursenametxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="MCA"
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -88,18 +115,20 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Course Name: "
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/coursenametxt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Eg: MCA"
-                android:textSize="20sp" />
+                android:layout_height="60dp"
+                android:hint="Roll No"> <!-- Add a hint if needed -->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rollnotxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="44"
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -108,18 +137,20 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Roll No: "
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/rollnotxt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Eg: 44"
-                android:textSize="20sp" />
+                android:layout_height="60dp"
+                android:hint="Phone Number"> <!-- Add a hint if needed -->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phonenotxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="1234567890"
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -128,52 +159,52 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Phone no:"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/phonenotxt"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Eg: 1234567890"
-                android:textSize="20sp" />
+                android:layout_height="60dp"
+                android:hint="Div"> <!-- Add a hint if needed -->
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/divtxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="A"
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <LinearLayout
+
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/primary"
+            app:cardCornerRadius="@dimen/card_corner_radius_half"
+            app:strokeWidth="0dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Div: "
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/divtxt"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Eg: MCA-A"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:layout_gravity="center"
+                android:padding="@dimen/material_size_2">
 
-        <Button
-            android:id="@+id/updatebtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Update" />
+                <TextView
+                    android:id="@+id/updatebtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:gravity="center"
+                    android:padding="@dimen/material_size_4"
+                    android:text="Save Changes"
+                    android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/backbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Go Back To Main Page" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
-</ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
+

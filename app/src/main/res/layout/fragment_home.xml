@@ -8,6 +8,11 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <LinearLayout
+        android:id="@+id/Home_Main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,4 +41,6 @@
             android:src="@drawable/baseline_add_24" />
 
     </RelativeLayout>
+
+    </LinearLayout>
 </FrameLayout>

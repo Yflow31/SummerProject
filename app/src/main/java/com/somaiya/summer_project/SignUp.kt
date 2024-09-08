@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -30,8 +31,8 @@ class SignUp : AppCompatActivity() {
     private lateinit var editTextDiv: EditText
     private lateinit var editTextPassword: EditText
     private lateinit var editTextRollNo: EditText
-    private lateinit var signupbtn: Button
-    private lateinit var goToLogin: TextView
+    private lateinit var signupbtn: TextView
+    private lateinit var goToLogin: ImageButton
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,11 +73,12 @@ class SignUp : AppCompatActivity() {
 
                     val example = DataSignUp(
                         firstName, lastName, displayName , phoneNumber, email,
-                        course, div, role, password, rollNo, "true", false
+                        course, div, role, password, rollNo, false, true
                     )
                     signup(example)
                     val intent = Intent(this@SignUp, MainMenu::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     if (firstName.isEmpty()) editTextFirstName.error = "Please enter your first name"
                     if (lastName.isEmpty()) editTextLastName.error = "Please enter your last name"
@@ -94,11 +96,10 @@ class SignUp : AppCompatActivity() {
         goToLogin.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
     private suspend fun signup(example: DataSignUp) {
-        viewModelSignUp.signUp(example)
+        viewModelSignUp.signUp(example,this@SignUp)
     }
 }

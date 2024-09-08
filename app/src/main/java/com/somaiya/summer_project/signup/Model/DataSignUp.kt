@@ -11,6 +11,6 @@ data class DataSignUp(
     val role: String,
     val password: String,
     val rollNo: String,
-    val isactive: String,
-    var canCreateNewReason: Boolean = false
+    val isactive: Boolean = false ,
+    var canCreateNewReason: Boolean = true,
 )

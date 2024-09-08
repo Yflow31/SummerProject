@@ -9,6 +9,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,25 +24,35 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.somaiya.summer_project.RecyclerReasons.ApprovalListener
 import com.somaiya.summer_project.utils.ApprovalConstant
+import com.somaiya.summer_project.utils.Loader
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class HomeFragment : Fragment(), ApprovalListener {
 
+    //Loaders
+    private var LOADER_SHOWING = false
+    private var loadingInsuranceDialogueFragment: Loader? = null
+
     private lateinit var recyclerviewreason: RecyclerView
     private lateinit var applyform: ArrayList<ApplyFormData>
     private lateinit var reasonAdapter: MyAdapter
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+    private lateinit var main: LinearLayout
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        main = view.findViewById<LinearLayout>(R.id.Home_Main)
+
+        //Show Loader
+        showLoadingMain(main)
 
         recyclerviewreason = view.findViewById(R.id.recyclerviewreason)
         recyclerviewreason.layoutManager = LinearLayoutManager(context)
@@ -125,6 +137,7 @@ class HomeFragment : Fragment(), ApprovalListener {
                                         applyform.clear()
                                         applyform.addAll(sortedList)
                                         reasonAdapter.notifyDataSetChanged()
+                                        hideLoadingMain(main)
                                     }
                             }
 
@@ -188,19 +201,23 @@ class HomeFragment : Fragment(), ApprovalListener {
                                         applyform.clear()
                                         applyform.addAll(sortedList)
                                         reasonAdapter.notifyDataSetChanged()
+                                        hideLoadingMain(main)
                                     }
                             }
                         }
                     } else {
-                        Log.d("UserRole", "Role field is missing")
+                        Toast.makeText(context, "User Role is Invalid", Toast.LENGTH_SHORT).show()
+                        hideLoadingMain(main)
                     }
                 } else {
-                    Log.d("UserDoc", "User document does not exist")
+                    Toast.makeText(context, "User document does not exist", Toast.LENGTH_SHORT).show()
+                    hideLoadingMain(main)
                 }
             }.addOnFailureListener { e ->
                 Log.e("FirebaseError", "Error fetching user document", e)
             }
         }
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -244,6 +261,7 @@ class HomeFragment : Fragment(), ApprovalListener {
 
 
     override fun onApprovalResult(isApproved: Boolean, position: Int, reasonId: String) {
+
         var status: String = ApprovalConstant.PENDING.name
 
         if (isApproved) {
@@ -266,9 +284,11 @@ class HomeFragment : Fragment(), ApprovalListener {
                             .addOnSuccessListener {
                                 applyform[position].approvalStatus = status
                                 reasonAdapter.notifyItemChanged(position)
+
                             }
                             .addOnFailureListener { exception ->
                                 Log.w("Firestore", "Error updating ReasonsForAdmin: ", exception)
+
                             }
 
                         //Update Can Create function
@@ -283,12 +303,17 @@ class HomeFragment : Fragment(), ApprovalListener {
                             .update("approvalStatus", status)
                             .addOnFailureListener { exception ->
                                 Log.w("Firestore", "Error updating USERS reasons: ", exception)
+
                             }
+
+
                     } else {
                         Log.w("Firestore", "userId not found in ReasonsForAdmin document")
+
                     }
                 } else {
                     Log.w("Firestore", "Reason document not found in ReasonsForAdmin")
+
                 }
             }
             .addOnFailureListener { exception ->
@@ -297,6 +322,8 @@ class HomeFragment : Fragment(), ApprovalListener {
     }
 
     override fun onDeleteResult(position: Int, reasonId: String) {
+        showLoadingMain(main)
+
         db.collection("ReasonsForAdmin").document(reasonId).get()
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
@@ -321,21 +348,61 @@ class HomeFragment : Fragment(), ApprovalListener {
                                         db.collection("ReasonsForAdmin").document(reasonId)
                                             .update("canCreateNewReason", false)
 
+                                        hideLoadingMain(main)
                                     }
                                     .addOnFailureListener { e ->
                                         Log.w("DeleteError", "Error deleting document from USERS", e)
+                                        hideLoadingMain(main)
                                     }
                             }
                             .addOnFailureListener { e ->
                                 Log.w("DeleteError", "Error deleting document from ReasonsForAdmin", e)
+                                hideLoadingMain(main)
                             }
                     }
                 }
             }
             .addOnFailureListener { e ->
                 Log.w("FetchError", "Error fetching document from ReasonsForAdmin", e)
+                hideLoadingMain(main)
             }
     }
+    private fun showLoadingMain(main: LinearLayout? = null) {
+        if (!LOADER_SHOWING) {
+            LOADER_SHOWING = true
 
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag("loadingDialog") as Loader?
+
+            if (fragment == null) {
+                // No existing fragment found, create and show a new instance
+                loadingInsuranceDialogueFragment = Loader.newInstance("Loading, Please wait...")
+                loadingInsuranceDialogueFragment?.isCancelable = false
+                loadingInsuranceDialogueFragment?.show(fragmentManager, "loadingDialog")
+                main?.visibility = View.GONE
+            } else if (!fragment.isAdded) {
+                // If the fragment exists but hasn't been added, show it again.
+                // This scenario is rare due to the lifecycle of DialogFragment.
+                fragment.show(fragmentManager, "loadingDialog")
+                main?.visibility = View.GONE
+            }
+            // If the fragment is already added, it should be visible and nothing needs to be done.
+        }
+    }
+
+    private fun hideLoadingMain(main: LinearLayout? = null) {
+        try {
+            LOADER_SHOWING = false
+
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag("loadingDialog") as Loader?
+            if (fragment != null && fragment.isAdded) {
+                fragment.dismiss()
+                main?.visibility = View.VISIBLE
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
 }

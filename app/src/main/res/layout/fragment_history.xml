@@ -6,6 +6,11 @@
     android:background="@color/app_bg"
     tools:context=".Fragments.HistoryFragment">
 
+    <LinearLayout
+        android:id="@+id/History_Main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -372,7 +377,7 @@
                     android:fontFamily="@font/lato_bold"
                     android:layout_centerHorizontal="true"
                     android:textSize="20sp"
-                    android:text="Leaderboard"
+                    android:text="Leaderboards"
                     android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -394,5 +399,7 @@
 
 
     </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 
 </FrameLayout>

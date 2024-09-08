@@ -5,9 +5,11 @@ import android.net.http.HttpException
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -27,6 +29,7 @@ import com.somaiya.summer_project.applyform.Repository.ViewModelApplyForm
 import com.somaiya.summer_project.applyform.Repository.ViewModelFactoryApplyForm
 import com.somaiya.summer_project.timezone.retrofit.RetrofitClient
 import com.somaiya.summer_project.timezone.retrofit.TimeApiService
+import com.somaiya.summer_project.utils.Loader
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.time.LocalDateTime
@@ -34,6 +37,10 @@ import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
 class ApplyForForm : AppCompatActivity() {
+
+    //Loaders
+    private var LOADER_SHOWING = false
+    private var loadingInsuranceDialogueFragment: Loader? = null
 
     lateinit var reason_for_being_late: EditText
     lateinit var location: EditText
@@ -53,7 +60,7 @@ class ApplyForForm : AppCompatActivity() {
     lateinit var radio3: RadioButton
     lateinit var radio4: RadioButton
 
-
+    lateinit var main: LinearLayout
 
     private val applyFormRepository = RepositoryApplyForm()
     private val ViewModelApplyForm: ViewModelApplyForm by viewModels {
@@ -67,6 +74,11 @@ class ApplyForForm : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_apply_for_form)
+
+        main = findViewById(R.id.Main_Request)
+
+        showLoadingMain(main)
+        hideLoadingMain(main)
 
         //EditText
         reason_for_being_late = findViewById(R.id.reason_for_being_late)
@@ -130,7 +142,7 @@ class ApplyForForm : AppCompatActivity() {
             .addOnSuccessListener { documentSnapshot ->
                 if (documentSnapshot.exists()) {
                     val canCreateNewReason = documentSnapshot.getBoolean("canCreateNewReason")
-                    if (canCreateNewReason == true) {
+                    if (canCreateNewReason == false) {
                         submit_btn.isEnabled = false
                         submit_btn.setBackgroundColor(
                             ContextCompat.getColor(
@@ -138,13 +150,16 @@ class ApplyForForm : AppCompatActivity() {
                                 R.color.grey
                             )
                         )
+                        hideLoadingMain(main)
                     } else {
                         submit_btn.isEnabled = true
+                        hideLoadingMain(main)
                     }
                 }
             }
 
         var selectedOption: String = ""
+
 
 
         radio1.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -188,7 +203,7 @@ class ApplyForForm : AppCompatActivity() {
                 val times_late = times_late.text.toString()
                 val selectedTimeSlot = selectedOption
 
-                if (reason.isNotEmpty() || location.isNotEmpty() || radioGroup.checkedRadioButtonId != -1) {
+                if (reason.isNotEmpty() && location.isNotEmpty()  && subject.isNotEmpty() && faculty.isNotEmpty() && selectedTimeSlot.isNotEmpty() && times_late.isNotEmpty()) {
                     val form = ApplyFormData(
                         reason,
                         location,
@@ -205,6 +220,7 @@ class ApplyForForm : AppCompatActivity() {
                         selectedTimeSlot = selectedTimeSlot
                     )
                     submitform(form)
+
                     submit_btn.isEnabled = false
                     submit_btn.setBackgroundColor(
                         ContextCompat.getColor(
@@ -212,6 +228,10 @@ class ApplyForForm : AppCompatActivity() {
                             R.color.grey
                         )
                     )
+
+                }
+                else{
+                    Toast.makeText(this@ApplyForForm, "Some of the field are empty", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -260,4 +280,43 @@ class ApplyForForm : AppCompatActivity() {
     private suspend fun submitform(form: ApplyFormData) {
         ViewModelApplyForm.submitForm(form)
     }
+
+    private fun showLoadingMain(main: LinearLayout? = null) {
+        if (!LOADER_SHOWING) {
+            LOADER_SHOWING = true
+
+            val fragmentManager = supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag("loadingDialog") as Loader?
+
+            if (fragment == null) {
+                // No existing fragment found, create and show a new instance
+                loadingInsuranceDialogueFragment = Loader.newInstance("Loading, Please wait...")
+                loadingInsuranceDialogueFragment?.isCancelable = false
+                loadingInsuranceDialogueFragment?.show(fragmentManager, "loadingDialog")
+                main?.visibility = View.GONE
+            } else if (!fragment.isAdded) {
+                // If the fragment exists but hasn't been added, show it again.
+                // This scenario is rare due to the lifecycle of DialogFragment.
+                fragment.show(fragmentManager, "loadingDialog")
+                main?.visibility = View.GONE
+            }
+            // If the fragment is already added, it should be visible and nothing needs to be done.
+        }
+    }
+
+    private fun hideLoadingMain(main: LinearLayout? = null) {
+        try {
+            LOADER_SHOWING = false
+
+            val fragmentManager = supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag("loadingDialog") as Loader?
+            if (fragment != null && fragment.isAdded) {
+                fragment.dismiss()
+                main?.visibility = View.VISIBLE
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 }

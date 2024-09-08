@@ -1,415 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bg"
-    tools:context=".Fragments.LogOutFragment">
+    android:padding="8dp"
+    tools:context=".MainActivity">
 
-    <androidx.core.widget.NestedScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
 
-
-        <RelativeLayout
-            android:id="@+id/main_counter_layout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:orientation="vertical">
 
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/counter_card"
+            <EditText
+                android:id="@+id/editTextFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/card_corner_radius"
-                app:strokeWidth="0dp">
+                android:hint="First Name"
+                android:inputType="textPersonName" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/material_size_4">
-
-                    <RelativeLayout
-                        android:id="@+id/layout_progress_bar"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true">
-
-                        <com.github.rezaiyan.levelprogressbar.LevelProgressBar
-                            android:id="@+id/progress_bar"
-                            android:layout_width="200dp"
-                            android:layout_height="200dp"
-                            android:layout_centerInParent="true"
-                            android:layout_margin="4dp"
-                            app:spb_background_color="@color/primary_light_bg"
-                            app:spb_is_enable="true"
-                            app:spb_is_step_progress="false"
-                            app:spb_level="level6"
-                            app:spb_stroke_with="50"
-                            app:spb_text_level_color="#00000000"
-                            app:spb_unprogress_color="#E6E6E6" />
-
-                        <LinearLayout
-                            android:id="@+id/details_animation_layout"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/progress_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/lato_bold"
-                                android:text="2/7"
-                                android:textColor="@color/primary"
-                                android:textSize="36sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/lato_bold"
-                                android:text="Late Entries Today"
-                                android:textAlignment="center"
-                                android:textColor="@color/primary"
-                                android:textSize="11sp"
-                                android:textStyle="normal" />
-
-
-                        </LinearLayout>
-                    </RelativeLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="12dp"
-                        android:layout_toEndOf="@+id/layout_progress_bar"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/lexend_semibold"
-                            android:text="Tips"
-                            android:textColor="@color/secondary_text_color"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tips_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="@dimen/material_size_12"
-                            android:fontFamily="@font/lexend_regular"
-                            android:maxLines="3"
-                            android:minLines="3"
-                            android:textColor="@color/secondary_text_color"
-                            android:textSize="15sp"
-                            tools:text="@tools:sample/lorem/random" />
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/material_size_2"
-                            app:cardBackgroundColor="@color/primary"
-                            app:cardCornerRadius="@dimen/card_corner_radius_half"
-                            app:strokeWidth="0dp">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_gravity="center"
-                                android:padding="@dimen/material_size_2">
-
-                                <TextView
-                                    android:id="@+id/new_late_request"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:fontFamily="@font/lexend_light"
-                                    android:gravity="center"
-                                    android:padding="@dimen/material_size_4"
-                                    android:text="New Late Request!"
-                                    android:textColor="@color/white" />
-
-                            </RelativeLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <LinearLayout
-                android:id="@+id/graph_layout"
+            <EditText
+                android:id="@+id/editTextLastName"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/counter_card"
-                android:layout_marginTop="@dimen/material_size_8"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <RelativeLayout
-                    android:id="@+id/graph_layout_teacher"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/material_size_4"
-                    android:visibility="visible">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/graph_card_teacher"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:strokeWidth="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/material_size_12">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:fontFamily="@font/lexend_regular"
-                                android:text="Weekly Report"
-                                android:textColor="@color/secondary_text_color"
-                                android:textSize="10sp" />
+                android:layout_height="wrap_content"
+                android:hint="Last Name"
+                android:inputType="textPersonName" />
 
 
-                            <com.somaiya.summer_project.utils.RoundedBarChart
-                                android:id="@+id/barChart_for_teacher"
-                                android:layout_width="match_parent"
-                                android:layout_height="400dp"
-                                app:radius="3dp" />
 
-
-                        </RelativeLayout>
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </RelativeLayout>
-
-                <!--graph 2-->
-                <RelativeLayout
-                    android:id="@+id/graph_layout_student"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/material_size_4"
-                    android:layout_weight="1"
-                    android:visibility="gone">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/graph_card_1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:strokeWidth="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/material_size_12">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:fontFamily="@font/lexend_regular"
-                                android:text="Weekly Report"
-                                android:textColor="@color/secondary_text_color"
-                                android:textSize="10sp" />
-
-
-                            <com.somaiya.summer_project.utils.RoundedBarChart
-                                android:id="@+id/barChart"
-                                android:layout_width="match_parent"
-                                android:layout_height="400dp"
-                                app:radius="3dp" />
-
-
-                        </RelativeLayout>
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </RelativeLayout>
-
-
-                <!--Student graph 2-->
-                <RelativeLayout
-                    android:id="@+id/piechart_for_student"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/material_size_4"
-                    android:layout_weight="1"
-                    android:visibility="gone">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/graph_card_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:strokeWidth="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/material_size_12">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:fontFamily="@font/lexend_regular"
-                                android:text="Status Overview"
-                                android:textColor="@color/secondary_text_color"
-                                android:textSize="10sp" />
-
-                            <com.github.mikephil.charting.charts.PieChart
-                                android:id="@+id/barChart_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="400dp" />
-
-                        </RelativeLayout>
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/graph_layout_2"
+            <EditText
+                android:id="@+id/editTextPhoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@id/graph_layout"
-                android:layout_marginTop="@dimen/material_size_8"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:inputType="phone" />
 
-                <RelativeLayout
-                    android:id="@+id/piechart_for_teacher"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/material_size_4"
-                    android:layout_weight="1"
-                    android:visibility="visible">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/graph_card_teacher_2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardBackgroundColor="@color/white"
-                        app:cardCornerRadius="@dimen/card_corner_radius"
-                        app:strokeWidth="0dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/material_size_12">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentBottom="true"
-                                android:layout_centerHorizontal="true"
-                                android:fontFamily="@font/lexend_regular"
-                                android:text="Status Overview"
-                                android:textColor="@color/secondary_text_color"
-                                android:textSize="10sp" />
-
-                            <com.github.mikephil.charting.charts.PieChart
-                                android:id="@+id/barChart_for_teacher_2"
-                                android:layout_width="match_parent"
-                                android:layout_height="400dp" />
-
-                        </RelativeLayout>
-
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                </RelativeLayout>
-
-
-            </LinearLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/late_request_card"
+            <EditText
+                android:id="@+id/editTextEmailAddress"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@id/graph_layout_2"
-                android:layout_marginTop="@dimen/material_size_8"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="@dimen/card_corner_radius"
-                app:strokeWidth="0dp">
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/material_size_12">
+            <EditText
+                android:id="@+id/editTextCourse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Course"
+                android:inputType="text" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="gone"
-                        android:id="@+id/late_request_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="12"
-                        tools:listitem="@layout/item_dashboard_late_request" />
+            <EditText
+                android:id="@+id/editTextDiv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Division"
+                android:inputType="text" />
 
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/leaderboard_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Leaderboard"
-                        android:layout_centerHorizontal="true" />
+            <EditText
+                android:id="@+id/editTextRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Role" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:visibility="visible"
-                        android:id="@+id/leaderboard_RecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/leaderboard_txt"
-                        android:orientation="vertical"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:itemCount="12"
-                        tools:listitem="@layout/item_leaderboard_display" />
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
 
+            <EditText
+                android:id="@+id/editTextRollNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Roll Number"
+                android:inputType="text" />
 
-                </RelativeLayout>
+            <Button
+                android:id="@+id/signupbtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign In" />
 
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </RelativeLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
-
-
-</RelativeLayout>
+            <TextView
+                android:id="@+id/goToLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Go Back To Login Page?" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>

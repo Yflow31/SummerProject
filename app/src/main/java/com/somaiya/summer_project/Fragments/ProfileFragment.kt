@@ -41,6 +41,7 @@ class ProfileFragment : Fragment() {
     private lateinit var main: LinearLayout
 
     private lateinit var profile_button: ImageButton
+    private lateinit var logout: TextView
 
 
     override fun onCreateView(
@@ -71,6 +72,7 @@ class ProfileFragment : Fragment() {
         emailTextView = view.findViewById(R.id.email_text)
 
         profile_button = view.findViewById(R.id.profile_button)
+        logout = view.findViewById(R.id.logout)
 
 
         if (currentUser != null) {
@@ -104,6 +106,14 @@ class ProfileFragment : Fragment() {
         profile_button.setOnClickListener {
             val intent = Intent(activity, ProfileUpdate::class.java)
             startActivity(intent)
+            activity?.finish()
+        }
+
+        logout.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(activity, MainActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
         return view
