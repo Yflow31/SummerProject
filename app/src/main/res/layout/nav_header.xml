@@ -8,10 +8,12 @@
     android:padding="20dp"> <!-- Added padding to the LinearLayout -->
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/profile_image"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:background="@drawable/border_circle"
         android:src="@drawable/profile" />
 
     <TextView

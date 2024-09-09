@@ -1,10 +1,12 @@
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.signup.Model.DataSignUp
+import com.somaiya.summer_project.utils.RandomPhotoUrlGenerator
 
 class RepositorySignUp {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -32,8 +34,9 @@ class RepositorySignUp {
                 if (task.isSuccessful) {
                     val userId = auth.currentUser!!.uid
                     val userRef = firestore.collection("USERS").document(userId)
+                    val photoUrl = "https://api.dicebear.com/7.x/notionists/png?seed=" + RandomPhotoUrlGenerator().randomUsernameExtension()
 
-                    val profileUpdates = UserProfileChangeRequest.Builder()
+                    val profileUpdates = UserProfileChangeRequest.Builder().setPhotoUri(Uri.parse(photoUrl))
                         .setDisplayName(dataSignUp.firstName).build()
 
                     auth.currentUser?.updateProfile(profileUpdates)

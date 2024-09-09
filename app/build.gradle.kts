@@ -93,4 +93,9 @@ dependencies {
     
     //custom progress bar
     implementation ("io.github.rezaiyan:levelprogressbar:1.0.3")
+
+    //Glide
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    kapt ("com.github.bumptech.glide:compiler:4.15.1") // For Kotlin annotation processing
 }

@@ -8,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.somaiya.summer_project.MainActivity
@@ -17,6 +19,7 @@ import com.somaiya.summer_project.MainMenu
 import com.somaiya.summer_project.ProfileUpdate
 import com.somaiya.summer_project.R
 import com.somaiya.summer_project.utils.Loader
+import de.hdodenhof.circleimageview.CircleImageView
 
 
 class ProfileFragment : Fragment() {
@@ -70,6 +73,7 @@ class ProfileFragment : Fragment() {
         courseTextView = view.findViewById(R.id.course_text)
         phoneTextView = view.findViewById(R.id.phone_text)
         emailTextView = view.findViewById(R.id.email_text)
+
 
         profile_button = view.findViewById(R.id.profile_button)
         logout = view.findViewById(R.id.logout)

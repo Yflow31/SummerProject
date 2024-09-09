@@ -37,7 +37,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:text="EDIT PROFILE"
-            android:textSize="30sp" />
+            android:textSize="27sp" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +49,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:hint="First Name"> <!-- Add a hint if needed -->
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -73,7 +74,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:hint="Last Name"> <!-- Add a hint if needed -->
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -95,7 +96,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:hint="Course Name"> <!-- Add a hint if needed -->
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -117,7 +118,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:hint="Roll No"> <!-- Add a hint if needed -->
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -139,7 +140,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:hint="Phone Number"> <!-- Add a hint if needed -->
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -161,7 +162,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:hint="Div"> <!-- Add a hint if needed -->
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -205,6 +206,8 @@
 
     </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 
 </FrameLayout>
 

@@ -15,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -25,6 +26,7 @@ import com.somaiya.summer_project.timezone.timezoneRepository
 import com.somaiya.summer_project.timezone.timezoneViewModel
 import com.somaiya.summer_project.timezone.timezoneViewModelFactory
 import com.somaiya.summer_project.utils.UtiliMethods
+import de.hdodenhof.circleimageview.CircleImageView
 
 class MainMenu : AppCompatActivity() {
 
@@ -68,9 +70,15 @@ class MainMenu : AppCompatActivity() {
         setupActionBarWithNavController(navController,appBarConfiguration)
 
         val headerView = navigationView.getHeaderView(0)
+        val profileImage = headerView.findViewById<CircleImageView>(R.id.profile_image)
         val userNameTextView = headerView.findViewById<TextView>(R.id.user_name)
         val userEmailTextView = headerView.findViewById<TextView>(R.id.user_email)
         userNameTextView.setText(user?.displayName.toString())
+
+        Glide.with(this)
+            .load(user?.photoUrl) // Assuming user.photoUrl is a Uri or String
+            .into(profileImage)
+
         Log.d("displayname", "onCreate: ${user?.displayName.toString()}")
         userEmailTextView.setText(user?.email)
         Log.d("displayname", "onCreate: ${user?.email}")

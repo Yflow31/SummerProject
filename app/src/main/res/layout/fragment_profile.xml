@@ -36,17 +36,18 @@
 
                     <RelativeLayout
                         android:id="@+id/profile_part_one"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="30dp"
                         android:gravity="center">
 
-                        <ImageButton
+                        <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/profile_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentStart="true"
+                            android:backgroundTint="@color/white"
                             android:background="@drawable/profile" />
 
                     </RelativeLayout>
