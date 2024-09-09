@@ -31,7 +31,6 @@ class ProfileUpdate : AppCompatActivity() {
     lateinit var lastnametxt: EditText
     lateinit var coursenametxt: EditText
     lateinit var rollnotxt: EditText
-    lateinit var profile_image: CircleImageView
 
     lateinit var updatebtn: TextView
     lateinit var backbtn: ImageButton
@@ -52,7 +51,6 @@ class ProfileUpdate : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_update)
 
-        profile_image = findViewById(R.id.profile_image)
 
         //EditText
         firstnametxt = findViewById(R.id.firstnametxt)
@@ -73,10 +71,6 @@ class ProfileUpdate : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
 
         if (user != null) {
-
-            Glide.with(this)
-                .load(user.photoUrl)
-                .into(profile_image)
 
             db.collection("USERS").document(user.uid).get().addOnSuccessListener { documentSnapshot ->
                 role = documentSnapshot.getString("role") ?: "Unknown" // Default to "Unknown" if role is null
