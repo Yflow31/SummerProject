@@ -2,9 +2,11 @@ package com.somaiya.summer_project
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -25,12 +27,16 @@ import kotlinx.coroutines.launch
 class ProfileUpdate : AppCompatActivity() {
 
     //Loaders
+    private var LOADER_SHOWING = false
+    private var loadingInsuranceDialogueFragment: Loader? = null
 
 
     lateinit var firstnametxt: EditText
     lateinit var lastnametxt: EditText
     lateinit var coursenametxt: EditText
     lateinit var rollnotxt: EditText
+
+    lateinit var main:LinearLayout
 
     lateinit var updatebtn: TextView
     lateinit var backbtn: ImageButton
@@ -50,6 +56,9 @@ class ProfileUpdate : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_update)
+        main = findViewById(R.id.main)
+
+        showLoadingMain(main)
 
 
         //EditText
@@ -59,6 +68,7 @@ class ProfileUpdate : AppCompatActivity() {
         rollnotxt = findViewById(R.id.rollnotxt)
         phonenotxt = findViewById(R.id.phonenotxt)
         divtxt = findViewById(R.id.divtxt)
+
 
         // TextView
 
@@ -80,6 +90,9 @@ class ProfileUpdate : AppCompatActivity() {
                 rollnotxt.setText(documentSnapshot.getString("rollNo")?: "Unknown")
                 phonenotxt.setText(documentSnapshot.getString("phoneNumber")?: "Unknown")
                 divtxt.setText(documentSnapshot.getString("div")?: "Unknown")
+
+                hideLoadingMain(main)
+
             }.addOnFailureListener {
                 // Handle any failures here, maybe set a default role
                 role = "Unknown"
@@ -89,6 +102,7 @@ class ProfileUpdate : AppCompatActivity() {
                 rollnotxt.setText("Unknown")
                 phonenotxt.setText("Unknown")
                 divtxt.setText("Unknown")
+                hideLoadingMain(main)
             }
         }
 
@@ -129,6 +143,44 @@ class ProfileUpdate : AppCompatActivity() {
 
     private suspend fun updateprf(profile: ProfileData) {
         ViewModelProfile.updateProfile(profile)
+    }
+
+    private fun showLoadingMain(main: LinearLayout? = null) {
+        if (!LOADER_SHOWING) {
+            LOADER_SHOWING = true
+
+            val fragmentManager = supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag("loadingDialog") as Loader?
+
+            if (fragment == null) {
+                // No existing fragment found, create and show a new instance
+                loadingInsuranceDialogueFragment = Loader.newInstance("Loading, Please wait...")
+                loadingInsuranceDialogueFragment?.isCancelable = false
+                loadingInsuranceDialogueFragment?.show(fragmentManager, "loadingDialog")
+                main?.visibility = View.GONE
+            } else if (!fragment.isAdded) {
+                // If the fragment exists but hasn't been added, show it again.
+                // This scenario is rare due to the lifecycle of DialogFragment.
+                fragment.show(fragmentManager, "loadingDialog")
+                main?.visibility = View.GONE
+            }
+            // If the fragment is already added, it should be visible and nothing needs to be done.
+        }
+    }
+
+    private fun hideLoadingMain(main: LinearLayout? = null) {
+        try {
+            LOADER_SHOWING = false
+
+            val fragmentManager = supportFragmentManager
+            val fragment = fragmentManager.findFragmentByTag("loadingDialog") as Loader?
+            if (fragment != null && fragment.isAdded) {
+                fragment.dismiss()
+                main?.visibility = View.VISIBLE
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 }

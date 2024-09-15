@@ -793,12 +793,10 @@ class HistoryFragment : Fragment() {
                                     "We have sent you a verification link via email. Please verify your account.",
                                     Toast.LENGTH_SHORT
                                 ).show();
-
                             } else {
                                 Toast.makeText(
                                     requireContext(),
-                                    "Something went wrong " + (it.exception?.localizedMessage
-                                        ?: ""),
+                                    "Please Check your email",
                                     Toast.LENGTH_SHORT
                                 ).show();
                             }
@@ -806,8 +804,6 @@ class HistoryFragment : Fragment() {
                     }
                 }
             }
-
-
         }
 
 

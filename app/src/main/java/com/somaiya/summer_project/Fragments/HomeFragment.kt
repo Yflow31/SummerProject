@@ -234,8 +234,34 @@ class HomeFragment : Fragment(), ApprovalListener {
 
         val fab = view.findViewById<View>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(activity, ApplyForForm::class.java)
-            startActivity(intent)
+            currentUser?.reload()?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val isVerified = currentUser.isEmailVerified  // Check if the email is verified
+                    if (isVerified) {
+                        // Email is verified, proceed with your logic
+                        db.collection("USERS").document(currentUser.uid).update("isactive", true)
+                        val intent = Intent(activity, ApplyForForm::class.java)
+                        startActivity(intent)
+
+                    } else {
+                        currentUser.sendEmailVerification().addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(
+                                    context,
+                                    "We have sent you a verification link via email. Please verify your account.",
+                                    Toast.LENGTH_SHORT
+                                ).show();
+                            } else {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Please Check your email",
+                                    Toast.LENGTH_SHORT
+                                ).show();
+                            }
+                        }
+                    }
+                }
+            }
         }
         return view
     }

@@ -42,6 +42,8 @@ class ProfileFragment : Fragment() {
     private lateinit var phoneTextView: TextView
     private lateinit var emailTextView: TextView
     private lateinit var main: LinearLayout
+    private lateinit var profile_image: CircleImageView
+
 
     private lateinit var profile_button: ImageButton
     private lateinit var logout: TextView
@@ -73,6 +75,7 @@ class ProfileFragment : Fragment() {
         courseTextView = view.findViewById(R.id.course_text)
         phoneTextView = view.findViewById(R.id.phone_text)
         emailTextView = view.findViewById(R.id.email_text)
+        profile_image = view.findViewById(R.id.profile_image)
 
 
         profile_button = view.findViewById(R.id.profile_button)
@@ -80,6 +83,11 @@ class ProfileFragment : Fragment() {
 
 
         if (currentUser != null) {
+
+            Glide.with(this)
+                .load(currentUser.photoUrl) // Assuming user.photoUrl is a Uri or String
+                .into(profile_image)
+
             val userDocRef = db.collection("USERS").document(currentUser.uid)
             userDocRef.get()
                 .addOnSuccessListener { document ->
