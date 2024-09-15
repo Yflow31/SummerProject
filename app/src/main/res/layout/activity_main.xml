@@ -3,15 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_bg"
+    android:background="@drawable/bgtopi"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginVertical="8dp"
+        android:layout_marginBottom="200dp"
+        android:orientation="vertical"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="14dp"
         app:cardElevation="4dp">
@@ -28,36 +30,39 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/lato_bold"
-                android:text="Welcome!"
+                android:text="WELCOME!"
                 android:textColor="#333333"
                 android:textSize="40sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginBottom="@dimen/material_size_8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="50dp">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextEmailAddress"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:fontFamily="@font/lato_regular"
                     android:hint="Email Address"
-                    android:inputType="text" />
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginBottom="@dimen/material_size_8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp">
+                android:layout_height="50dp">
 
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTextPassword"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
                     android:fontFamily="@font/lato_regular"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:textSize="15sp" /> <!-- Add padding if needed -->
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,7 +75,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="New Here? Sign Up!"
                 android:textColor="#0E2AEF"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="wrap_content"
@@ -83,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:padding="12dp">
+                    android:padding="8dp">
 
                     <TextView
                         android:id="@+id/loginbtn"
@@ -99,6 +104,6 @@
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 </RelativeLayout>
