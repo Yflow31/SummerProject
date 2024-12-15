@@ -15,6 +15,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.somaiya.summer_project.R
 import com.somaiya.summer_project.ApplyForForm
 import com.somaiya.summer_project.RecyclerReasons.MyAdapter
@@ -41,6 +42,7 @@ class HomeFragment : Fragment(), ApprovalListener {
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private lateinit var main: LinearLayout
+    private lateinit var SwipeRefreshLayout: SwipeRefreshLayout
 
 
     override fun onCreateView(
@@ -53,6 +55,9 @@ class HomeFragment : Fragment(), ApprovalListener {
 
         //Show Loader
         showLoadingMain(main)
+
+        //Swipe Refresh
+        SwipeRefreshLayout = view.findViewById(R.id.SwipeRefreshLayout)
 
         recyclerviewreason = view.findViewById(R.id.recyclerviewreason)
         recyclerviewreason.layoutManager = LinearLayoutManager(context)
@@ -218,6 +223,162 @@ class HomeFragment : Fragment(), ApprovalListener {
             }
         }
 
+        SwipeRefreshLayout.setOnRefreshListener {
+            SwipeRefreshLayout.isRefreshing = false
+            if (currentUser != null) {
+                val userDocRef = db.collection("USERS").document(currentUser.uid)
+                userDocRef.get().addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        val role = documentSnapshot.getString("role")
+                        if (role != null) {
+                            when (role) {
+                                "admin" -> {
+                                    searchView.visibility = View.VISIBLE
+                                    db.collection("ReasonsForAdmin")
+                                        .orderBy("approvalStatus", Query.Direction.DESCENDING)
+                                        .get()
+                                        .addOnSuccessListener { querySnapshot ->
+                                            applyform.clear()
+                                            for (document in querySnapshot.documents) {
+                                                val userEmail = document.getString("email")
+                                                val location = document.getString("location")
+                                                val reasonForBeingLate =
+                                                    document.getString("reasonForBeingLate")
+                                                val timesLate = document.getString("timesLate")
+                                                val reasonId = document.getString("reasonId")
+                                                val approvalStatus =
+                                                    document.getString("approvalStatus")
+                                                val date = document.getString("currentdate")
+                                                val time = document.getString("currenttime")
+                                                val subject = document.getString("subject")
+                                                val faculty = document.getString("faculty")
+                                                val selectedTimeSlot =
+                                                    document.getString("selectedTimeSlot")
+
+
+                                                if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
+                                                    val formData = ApplyFormData(
+                                                        reasonForBeingLate = reasonForBeingLate, // Use named parameters for clarity
+                                                        location = location,
+                                                        timesLate = timesLate,
+                                                        email = userEmail,
+                                                        reasonId = reasonId ?: "",
+                                                        approvalStatus = approvalStatus
+                                                            ?: ApprovalConstant.PENDING.name,
+                                                        role = role,
+                                                        currentdate = date ?: "",
+                                                        currenttime = time ?: "",
+                                                        subject = subject ?: "",
+                                                        faculty = faculty ?: "",
+                                                        selectedTimeSlot = selectedTimeSlot ?: ""
+                                                    )
+                                                    applyform.add(formData)
+                                                }
+                                            }
+
+                                            val sortedList = applyform.sortedWith(compareBy<ApplyFormData> {
+                                                when (it.approvalStatus) {
+                                                    ApprovalConstant.PENDING.name -> 1
+                                                    ApprovalConstant.ACCEPTED.name -> 2
+                                                    ApprovalConstant.REJECTED.name -> 3
+                                                    else -> 4 // Default for unexpected values
+                                                }
+                                            }.thenBy { it.email }
+                                                .thenByDescending { it.timesLate.toInt() }
+                                                .thenByDescending {
+                                                    // Assuming `currentdate` is a String field in your ApplyFormData class
+                                                    SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(it.currentdate)
+                                                }.thenByDescending {
+                                                    SimpleDateFormat("mm:HH", Locale.getDefault()).parse(it.currenttime)
+                                                }
+                                            )
+
+                                            applyform.clear()
+                                            applyform.addAll(sortedList)
+                                            reasonAdapter.notifyDataSetChanged()
+                                            hideLoadingMain(main)
+                                        }
+                                }
+
+                                "student" -> {
+                                    db.collection("USERS").document(currentUser.uid)
+                                        .collection("reasons").get()
+                                        .addOnSuccessListener { querySnapshot ->
+                                            applyform.clear()
+                                            for (document in querySnapshot.documents) {
+                                                val userEmail = document.getString("email")
+                                                val location = document.getString("location")
+                                                val reasonForBeingLate =
+                                                    document.getString("reasonForBeingLate")
+                                                val timesLate = document.getString("timesLate")
+                                                val reasonId = document.getString("reasonId")
+                                                val approvalStatus =
+                                                    document.getString("approvalStatus")
+                                                val date = document.getString("currentdate")
+                                                val time = document.getString("currenttime")
+                                                val subject = document.getString("subject")
+                                                val faculty = document.getString("faculty")
+                                                val selectedTimeSlot =
+                                                    document.getString("selectedTimeSlot")
+
+
+                                                if (location != null && reasonForBeingLate != null && timesLate != null && userEmail != null) {
+                                                    val formData = ApplyFormData(
+                                                        reasonForBeingLate = reasonForBeingLate, // Use named parameters for clarity
+                                                        location = location,
+                                                        timesLate = timesLate,
+                                                        email = userEmail,
+                                                        reasonId = reasonId ?: "",
+                                                        approvalStatus = approvalStatus
+                                                            ?: ApprovalConstant.PENDING.name,
+                                                        role = role,
+                                                        currentdate = date ?: "",
+                                                        currenttime = time ?: "",
+                                                        subject = subject ?: "",
+                                                        faculty = faculty ?: "",
+                                                        selectedTimeSlot = selectedTimeSlot ?: ""
+                                                    )
+                                                    applyform.add(formData)
+                                                }
+                                            }
+                                            val sortedList = applyform.sortedWith(compareBy<ApplyFormData> {
+                                                when (it.approvalStatus) {
+                                                    ApprovalConstant.PENDING.name -> 1
+                                                    ApprovalConstant.ACCEPTED.name -> 2
+                                                    ApprovalConstant.REJECTED.name -> 3
+                                                    else -> 4 // Default for unexpected values
+                                                }
+                                            }.thenBy { it.email }
+                                                .thenByDescending { it.timesLate.toInt() }
+                                                .thenByDescending {
+                                                    // Assuming `currentdate` is a String field in your ApplyFormData class
+                                                    SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).parse(it.currentdate)
+                                                }.thenByDescending {
+                                                    SimpleDateFormat("mm:HH", Locale.getDefault()).parse(it.currenttime)
+                                                }
+                                            )
+
+                                            applyform.clear()
+                                            applyform.addAll(sortedList)
+                                            reasonAdapter.notifyDataSetChanged()
+                                            hideLoadingMain(main)
+                                        }
+                                }
+                            }
+                        } else {
+                            Toast.makeText(context, "User Role is Invalid", Toast.LENGTH_SHORT).show()
+                            hideLoadingMain(main)
+                        }
+                    } else {
+                        Toast.makeText(context, "User document does not exist", Toast.LENGTH_SHORT).show()
+                        hideLoadingMain(main)
+                    }
+                }.addOnFailureListener { e ->
+                    Log.e("FirebaseError", "Error fetching user document", e)
+                }
+            }
+        }
+
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -319,9 +480,9 @@ class HomeFragment : Fragment(), ApprovalListener {
 
                         //Update Can Create function
                         db.collection("USERS").document(fetchedUserId)
-                            .update("canCreateNewReason", false)
+                            .update("canCreateNewReason", true)
                         db.collection("ReasonsForAdmin").document(reasonId)
-                            .update("canCreateNewReason", false)
+                            .update("canCreateNewReason", true)
 
                         // Update the approval status in the USERS collection
                         db.collection("USERS").document(fetchedUserId)
@@ -373,6 +534,7 @@ class HomeFragment : Fragment(), ApprovalListener {
                                             .update("canCreateNewReason", false)
                                         db.collection("ReasonsForAdmin").document(reasonId)
                                             .update("canCreateNewReason", false)
+
 
                                         hideLoadingMain(main)
                                     }

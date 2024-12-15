@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -67,15 +68,24 @@ class SignUp : AppCompatActivity() {
                 val password = editTextPassword.text.toString()
                 val rollNo = editTextRollNo.text.toString()
 
+                // Validate email domain
+                val emailPattern = Regex("^[a-zA-Z0-9._%+-]+@somaiya\\.edu\$")
+
                 if (firstName.isNotEmpty() && lastName.isNotEmpty() &&
                     phoneNumber.isNotEmpty() && email.isNotEmpty() && course.isNotEmpty() &&
                     div.isNotEmpty() && role.isNotEmpty() && password.isNotEmpty() && rollNo.isNotEmpty()) {
 
+                    if (!emailPattern.matches(email)) {
+                        editTextEmailAddress.error = "Email must have '@somaiya.edu' domain"
+                        return@launch
+                    }
+
                     val example = DataSignUp(
-                        firstName, lastName, displayName , phoneNumber, email,
+                        firstName, lastName, displayName, phoneNumber, email,
                         course, div, role, password, rollNo, false, true
                     )
                     signup(example)
+                    Toast.makeText(this@SignUp, "Sign Up Successful", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this@SignUp, MainMenu::class.java)
                     startActivity(intent)
                     finish()
@@ -92,6 +102,7 @@ class SignUp : AppCompatActivity() {
                 }
             }
         }
+
 
         goToLogin.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

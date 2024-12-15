@@ -90,6 +90,9 @@ dependencies {
 
     //charts
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+
     
     //custom progress bar
     implementation ("io.github.rezaiyan:levelprogressbar:1.0.3")
