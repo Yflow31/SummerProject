@@ -531,9 +531,9 @@ class HomeFragment : Fragment(), ApprovalListener {
                                         reasonAdapter.notifyItemRemoved(position)  // Notify the adapter about item removal
 
                                         db.collection("USERS").document(fetchedUserId)
-                                            .update("canCreateNewReason", false)
+                                            .update("canCreateNewReason", true)
                                         db.collection("ReasonsForAdmin").document(reasonId)
-                                            .update("canCreateNewReason", false)
+                                            .update("canCreateNewReason", true)
 
 
                                         hideLoadingMain(main)
