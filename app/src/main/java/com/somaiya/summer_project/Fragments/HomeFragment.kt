@@ -484,6 +484,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                         db.collection("ReasonsForAdmin").document(reasonId)
                             .update("canCreateNewReason", true)
 
+                        //Removing Active Status
+                        db.collection("USERS").document(fetchedUserId)
+                            .update("isactive", false)
+
                         // Update the approval status in the USERS collection
                         db.collection("USERS").document(fetchedUserId)
                             .collection("reasons").document(reasonId)
@@ -518,25 +522,41 @@ class HomeFragment : Fragment(), ApprovalListener {
 
                     // Check if the fetched userId is not null
                     if (fetchedUserId != null) {
-                        // Delete the document from the ReasonsForAdmin collection
+                        // Delete the document from ReasonsForAdmin
                         db.collection("ReasonsForAdmin").document(reasonId)
                             .delete()
                             .addOnSuccessListener {
                                 // After successful deletion from ReasonsForAdmin
-                                db.collection("USERS").document(fetchedUserId).collection("reasons").document(reasonId)
+                                db.collection("USERS").document(fetchedUserId)
+                                    .collection("reasons").document(reasonId)
                                     .delete()
                                     .addOnSuccessListener {
-                                        // After successful deletion from USERS
-                                        applyform.removeAt(position)  // Remove the item from the list
-                                        reasonAdapter.notifyItemRemoved(position)  // Notify the adapter about item removal
+                                        applyform.removeAt(position)
+                                        reasonAdapter.notifyItemRemoved(position)
 
+                                        // Check if the user has any remaining active requests
                                         db.collection("USERS").document(fetchedUserId)
-                                            .update("canCreateNewReason", true)
-                                        db.collection("ReasonsForAdmin").document(reasonId)
-                                            .update("canCreateNewReason", true)
+                                            .collection("reasons")
+                                            .whereEqualTo("isactive", true)
+                                            .get()
+                                            .addOnSuccessListener { querySnapshot ->
+                                                val hasActiveRequests = !querySnapshot.isEmpty
 
-
-                                        hideLoadingMain(main)
+                                                // Update canCreateNewReason based on the presence of active requests
+                                                db.collection("USERS").document(fetchedUserId)
+                                                    .update("canCreateNewReason", !hasActiveRequests)
+                                                    .addOnSuccessListener {
+                                                        hideLoadingMain(main)
+                                                    }
+                                                    .addOnFailureListener { e ->
+                                                        Log.w("UpdateError", "Error updating canCreateNewReason", e)
+                                                        hideLoadingMain(main)
+                                                    }
+                                            }
+                                            .addOnFailureListener { e ->
+                                                Log.w("QueryError", "Error checking active requests", e)
+                                                hideLoadingMain(main)
+                                            }
                                     }
                                     .addOnFailureListener { e ->
                                         Log.w("DeleteError", "Error deleting document from USERS", e)
@@ -555,6 +575,10 @@ class HomeFragment : Fragment(), ApprovalListener {
                 hideLoadingMain(main)
             }
     }
+
+
+
+
     private fun showLoadingMain(main: LinearLayout? = null) {
         if (!LOADER_SHOWING) {
             LOADER_SHOWING = true

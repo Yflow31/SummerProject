@@ -18,6 +18,7 @@ class RepositoryApplyForm {
         val role = firestore.collection("USERS").document(user?.uid ?: "").get().await().getString("role")
 
         firestore.collection("USERS").document(user?.uid ?: "").update("canCreateNewReason", false)
+        firestore.collection("USERS").document(user?.uid ?: "").update("isactive", true)
 
         if (role != null) {
             form.role = role
